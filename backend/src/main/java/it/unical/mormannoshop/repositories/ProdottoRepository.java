@@ -1,4 +1,7 @@
-package it.unical.ecommerce.repositories;
+package it.unical.mormannoshop.repositories;
 
-public interface ProdottoRepository {
+import it.unical.mormannoshop.entities.Prodotto;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProdottoRepository extends JpaRepository<Prodotto,Long> {
 }
