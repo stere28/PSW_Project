@@ -1,5 +1,6 @@
 package it.unical.mormannoshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -18,6 +19,7 @@ import java.util.Set;
 public class Cliente extends User {
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Ordine> ordini = new HashSet<>();
 
     @ManyToMany
@@ -26,6 +28,7 @@ public class Cliente extends User {
             joinColumns = @JoinColumn(name = "cliente_id"),
             inverseJoinColumns = @JoinColumn(name = "prodotto_id")
     )
+    @JsonIgnore
     private Set<Prodotto> prodotti = new HashSet<>();
 
 }

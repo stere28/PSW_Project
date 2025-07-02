@@ -1,5 +1,6 @@
 package it.unical.mormannoshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import java.util.*;
 public class Venditore extends User {
 
     @OneToMany(mappedBy = "venditore", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Prodotto> prodotti = new HashSet<>();
 
 }
