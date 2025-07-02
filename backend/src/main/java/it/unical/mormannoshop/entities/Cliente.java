@@ -2,18 +2,13 @@ package it.unical.mormannoshop.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Entity
 @Table(name = "clienti")
 public class Cliente extends User {

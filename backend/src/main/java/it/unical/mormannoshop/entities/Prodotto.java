@@ -7,10 +7,7 @@ import lombok.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
+@Data
 @Entity
 @Builder
 @NoArgsConstructor
