@@ -25,7 +25,7 @@ public class VenditoreController
     {
         Prodotto prodotto = venditoreService.aggiungiProdotto(request);
 
-        URI location = URI.create("/api/products/" + prodotto.getId());
+        URI location = URI.create("/API/prodotti/" + prodotto.getId());
 
         return ResponseEntity
                 .created(location)
