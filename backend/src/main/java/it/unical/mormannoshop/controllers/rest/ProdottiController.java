@@ -41,6 +41,5 @@ public class ProdottiController {
         return prodottiService.filterProducts(text, categoria, minPrice, maxPrice, sortBy, pageNumber, pageSize);
     }
     //TODO potrebbe essere utile usare ResponseEntity
-
     //TODO aggiungere metodi per il venditore. come ad esempio l'aggiunta di un prodotto
 }
