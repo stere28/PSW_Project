@@ -17,8 +17,6 @@ import java.util.List;
 @Service
 public class ProdottiService {
 
-    //TODO fare attenzione a gestire correttamente la concorrenza
-
     @Autowired
     private ProdottoRepository prodottoRepository;
 

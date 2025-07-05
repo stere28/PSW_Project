@@ -26,5 +26,21 @@ public class Cliente extends User {
     @JsonIgnore
     private Set<Prodotto> prodotti = new HashSet<>();
 
+    public void aggiungiAlCarrello(Prodotto prodotto) {
+        this.prodotti.add(prodotto);
+        prodotto.getClienti().add(this);
+    }
+    public void rimuoviDalCarrello(Prodotto prodotto) {
+        this.prodotti.remove(prodotto);
+        prodotto.getClienti().remove(this);
+    }
+
+    public void svuotaCarrello() {
+        for (Prodotto prodotto : new HashSet<>(this.prodotti)) {
+            prodotto.getClienti().remove(this);
+        }
+        this.prodotti.clear();
+    }
+
 }
 

@@ -8,6 +8,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
+//TODO Quando usi @OneToMany, @ManyToOne ecc.,
+// evita @Data di Lombok che include toString() e equals(),
+// causando ricorsione infinita.
+//TODO @data non garantisce deepCopy quindi comporta un potenziale vulnerabilità
+
 @Entity
 @Builder
 @NoArgsConstructor
