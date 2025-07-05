@@ -8,34 +8,41 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
-@RequestMapping("API/cliente")
+@RequestMapping("/API/{idCliente}")
 public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
 
     @PostMapping("/carrello/add")
-    public ResponseEntity<?> aggiungiAlCarrello(@RequestParam Long idProdotto) {
-        boolean successo = clienteService.aggiungiProdottoAlCarrello(idProdotto);
-        if (successo) {
-            return ResponseEntity.ok("Prodotto aggiunto al carrello.");
-        } else {
-            return ResponseEntity.badRequest().body("Errore nell'aggiunta al carrello.");
-        }
+    public Set<Prodotto> aggiungiAlCarrello(
+            @PathVariable Long idCliente,
+            @RequestParam Long idProdotto) {
+        clienteService.aggiungiProdottoAlCarrello(idProdotto, idCliente);
+        return clienteService.getCarrello(idCliente);
     }
 
+    @DeleteMapping("/carrello/remove")
+    public Set<Prodotto> rimuoviDalCarrello(
+            @PathVariable Long idCliente,
+            @RequestParam Long idProdotto) {
+        clienteService.rimuoviProdottoDalCarrello(idProdotto, idCliente);
+        return clienteService.getCarrello(idCliente);
+    }
 
     @GetMapping("/carrello")
-    public ResponseEntity<List<Prodotto>> visualizzaCarrello() {
-        return ResponseEntity.ok(clienteService.getCarrello());
+    public Set<Prodotto> visualizzaCarrello(@PathVariable Long idCliente) {
+        return clienteService.getCarrello(idCliente);
     }
 
     @PostMapping("/carrello/checkout")
-    public ResponseEntity<?> checkout() {
-        //TODO
+    public ResponseEntity<?> checkout(@PathVariable Long idCliente) {
+        clienteService.checkout(idCliente);
+        return ResponseEntity.ok("Checkout completato con successo.");
     }
 }
 
