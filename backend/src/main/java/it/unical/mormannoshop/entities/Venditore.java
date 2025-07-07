@@ -16,4 +16,8 @@ public class Venditore extends User {
     @JsonIgnore
     private Set<Prodotto> prodotti = new HashSet<>();
 
+    @OneToMany
+    @JsonIgnore
+    private List<Notifica> notifiche;
+
 }

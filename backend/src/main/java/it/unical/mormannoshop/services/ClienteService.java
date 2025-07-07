@@ -6,10 +6,12 @@ import it.unical.mormannoshop.entities.Prodotto;
 import it.unical.mormannoshop.repositories.ClienteRepository;
 import it.unical.mormannoshop.repositories.OrdineRepository;
 import it.unical.mormannoshop.repositories.ProdottoRepository;
+import it.unical.mormannoshop.utils.events.ProdottoVendutoEvent;
 import it.unical.mormannoshop.utils.exceptions.ClienteNonTrovatoException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonDisponibileException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonTrovatoException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +30,9 @@ public class ClienteService {
 
     @Autowired
     private OrdineRepository ordineRepository;
+
+    @Autowired
+    private ApplicationEventPublisher publisher;
 
     @Transactional//(isolation = Isolation.READ_COMMITTED)
     public void aggiungiProdottoAlCarrello(Long idProdotto, Long idCliente) {
@@ -94,6 +99,9 @@ public class ClienteService {
             prodotto.setVenduto(true);
             prodotto.setOrdine(ordine);
             prodottoRepository.save(prodotto);
+
+            //notifica vendita dei prodotti ai venditori
+            publisher.publishEvent(new ProdottoVendutoEvent(this, prodotto, prodotto.getVenditore()));
         }
 
         // Svuota il carrello
