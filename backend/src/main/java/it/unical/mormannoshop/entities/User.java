@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 @Entity
 @Table(name = "users")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User {
     //TODO
     // @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) con @GeneratedValue(strategy = GenerationType.IDENTITY)
