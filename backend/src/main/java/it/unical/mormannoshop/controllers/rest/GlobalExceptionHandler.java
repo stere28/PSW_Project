@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
                 .body("Errore interno: " + ex.getMessage());
     }
 
-    @ExceptionHandler(ProdottoNonTrovatoException.class)
+    @ExceptionHandler(VenditoreNonTrovatoException.class)
     public ResponseEntity<String> handleVenditoreNonTrovato(VenditoreNonTrovatoException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }

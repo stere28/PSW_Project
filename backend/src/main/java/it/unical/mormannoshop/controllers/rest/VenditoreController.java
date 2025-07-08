@@ -38,12 +38,13 @@ public class VenditoreController
         return ResponseEntity.ok(prodotti);
     }
 
-    @GetMapping("/{idVenditore/notifiche}")
-    public ResponseEntity<List<Notifica>> getNotifiche(@PathVariable Long idVenditore)
-    {
-        List<Notifica> notifiche = venditoreService.getNotifiche(idVenditore);
-        return ResponseEntity.ok(notifiche);
-    }
+//    @GetMapping("/{idVenditore/notifiche}")
+//    public ResponseEntity<List<Notifica>> getNotifiche(@PathVariable Long idVenditore)
+//    {
+//        List<Notifica> notifiche = venditoreService.getNotifiche(idVenditore);
+//        return ResponseEntity.ok(notifiche);
+//    }
+    //TODO per natale mi da un problema
 
     @GetMapping("/{idVenditore}/prodotti/venduti")
     public ResponseEntity<List<Prodotto>> getProdottiVenduti(@PathVariable Long idVenditore)
