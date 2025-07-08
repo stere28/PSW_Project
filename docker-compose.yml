@@ -1,4 +1,18 @@
 services:
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:21.1.1
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: dev-mem
+      KC_HTTP_ENABLED: "true"
+      KC_HOSTNAME_STRICT: "false"
+      KC_FEATURES: token-exchange
+    ports:
+      - "8080:8080"
+    command: start-dev
+
   mysql:
     image: mysql:8.0
     container_name: mormanno-mysql
