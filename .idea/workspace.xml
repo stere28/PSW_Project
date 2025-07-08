@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7099d1ec-1aab-46f3-a1b2-939730c7d526" name="Changes" comment="Aggiunta del frontend" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="backend" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2zK8OL9cg2qBHp6KpU2LrnuDrP0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;182f69a887f4781d87f1d404444e6780&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.rcb.reactComponents" value="false" />
+        <entry key="com.haulmont.rcb.reactInspector" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="MormannoShopApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="MormannoShop" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="it.unical.mormannoshop.MormannoShopApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7099d1ec-1aab-46f3-a1b2-939730c7d526" name="Changes" comment="" />
+      <created>1751468370888</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751468370888</updated>
+      <workItem from="1751468372392" duration="521000" />
+      <workItem from="1751468912066" duration="2403000" />
+      <workItem from="1751530508344" duration="150000" />
+      <workItem from="1751878901480" duration="2058000" />
+      <workItem from="1751987089114" duration="8000" />
+      <workItem from="1751991457505" duration="966000" />
+      <workItem from="1751994199451" duration="540000" />
+      <workItem from="1751994749791" duration="165000" />
+      <workItem from="1751994925317" duration="564000" />
+      <workItem from="1751995802713" duration="133000" />
+      <workItem from="1751995957449" duration="209000" />
+      <workItem from="1751996180255" duration="27000" />
+    </task>
+    <task id="LOCAL-00001" summary="Rimossa dipendenza duplicata">
+      <option name="closed" value="true" />
+      <created>1751468989947</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1751468989947</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Aggiunta gestione del formato json">
+      <option name="closed" value="true" />
+      <created>1751470977296</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1751470977296</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Aggiunta funzionalità di creazione di nuovi prodotti">
+      <option name="closed" value="true" />
+      <created>1751471093319</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1751471093319</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Cambiamenti funzionali">
+      <option name="closed" value="true" />
+      <created>1751471130518</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1751471130518</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Utilizzo di @Data al posto di diverse annotazioni equivalenti">
+      <option name="closed" value="true" />
+      <created>1751471273636</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1751471273636</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Modificato URI">
+      <option name="closed" value="true" />
+      <created>1751530648359</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1751530648360</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Aggiunta di funzioni per i venditori">
+      <option name="closed" value="true" />
+      <created>1751880954625</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1751880954625</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Risolto TODO di salvataggio delle notifiche">
+      <option name="closed" value="true" />
+      <created>1751991668777</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1751991668777</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Aggiunta del frontend">
+      <option name="closed" value="true" />
+      <created>1751994554051</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1751994554051</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="backend" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Rimossa dipendenza duplicata" />
+    <MESSAGE value="Aggiunta gestione del formato json" />
+    <MESSAGE value="Aggiunta funzionalità di creazione di nuovi prodotti" />
+    <MESSAGE value="Cambiamenti funzionali" />
+    <MESSAGE value="Utilizzo di @Data al posto di diverse annotazioni equivalenti" />
+    <MESSAGE value="Modificato URI" />
+    <MESSAGE value="Aggiunta di funzioni per i venditori" />
+    <MESSAGE value="Risolto TODO di salvataggio delle notifiche" />
+    <MESSAGE value="Aggiunta del frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta del frontend" />
+  </component>
+</project>
