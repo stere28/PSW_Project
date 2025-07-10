@@ -20,9 +20,15 @@ services:
       retries: 10
 
   keycloak:
-    image: quay.io/keycloak/keycloak:24.0.2
-    restart: always
-    command: start-dev
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:25.0.1
+    command:
+    - start-dev
+    - --import-realm
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./keycloak/import:/opt/keycloak/data/import/
     depends_on:
       mysql-keycloak:
         condition: service_healthy
@@ -37,8 +43,6 @@ services:
       KC_HTTP_ENABLED: "true"
       KC_HOSTNAME_STRICT: "false"
       KC_FEATURES: token-exchange
-    ports:
-      - "8080:8080"
     networks:
       - mormanno-network
 
