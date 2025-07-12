@@ -1,0 +1,73 @@
+.vendor-dashboard-container {
+    padding: 2rem;
+    text-align: left;
+}
+
+.vendor-dashboard-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.vendor-dashboard-form {
+    margin-bottom: 2rem;
+}
+
+.vendor-dashboard-form input {
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.vendor-dashboard-form button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #646cff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.vendor-dashboard-form button:hover {
+    background-color: #535bf2;
+}
+
+.vendor-dashboard-products {
+    margin-top: 2rem;
+}
+
+.vendor-dashboard-product {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 1rem;
+}
+
+.vendor-dashboard-product h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.vendor-dashboard-product p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.vendor-dashboard-product button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.vendor-dashboard-product button:hover {
+    background-color: #e63946;
+}

@@ -1,0 +1,47 @@
+.product-container {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.product-container h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.product-container p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.product-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.product-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #646cff;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.product-button:hover {
+    background-color: #535bf2;
+}
+
+.delete-button {
+    background-color: #ff6b6b;
+}
+
+.delete-button:hover {
+    background-color: #e63946;
+}
