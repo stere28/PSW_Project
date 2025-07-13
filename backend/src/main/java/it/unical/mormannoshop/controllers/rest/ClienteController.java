@@ -15,6 +15,9 @@ import java.util.Set;
 @RequestMapping("/API/{idCliente}")
 public class ClienteController {
 
+    //TODO aggiungere pre autorize per verificare che il cliente che autorizza sia quello corretto
+    //TODO manca un metodo per creare il cliente
+
     @Autowired
     private ClienteService clienteService;
 

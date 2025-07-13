@@ -24,6 +24,7 @@ services:
     image: quay.io/keycloak/keycloak:25.0.1
     command:
     - start-dev
+    - --verbose
     - --import-realm
     ports:
       - "8080:8080"
