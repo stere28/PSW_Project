@@ -11,5 +11,4 @@ public class AggiuntaProdottoRequest
 
     private double prezzo;
 
-    private Long idVenditore;
 }
