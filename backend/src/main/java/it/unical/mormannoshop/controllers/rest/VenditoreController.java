@@ -19,10 +19,11 @@ public class VenditoreController
     @Autowired
     private VenditoreService venditoreService;
 
-    @PostMapping("/prodotti/aggiunta")
-    public ResponseEntity<AggiuntaProdottoResponse> aggiungiProdotto(@RequestBody AggiuntaProdottoRequest request)
+    @PostMapping("/{idVenditore}/prodotti/aggiunta")
+    public ResponseEntity<AggiuntaProdottoResponse> aggiungiProdotto(@PathVariable Long idVenditore,
+                                                                     @RequestBody AggiuntaProdottoRequest request)
     {
-        Prodotto prodotto = venditoreService.aggiungiProdotto(request);
+        Prodotto prodotto = venditoreService.aggiungiProdotto(idVenditore, request);
 
         URI location = URI.create("/API/prodotti/" + prodotto.getId());
 
@@ -38,13 +39,12 @@ public class VenditoreController
         return ResponseEntity.ok(prodotti);
     }
 
-//    @GetMapping("/{idVenditore/notifiche}")
-//    public ResponseEntity<List<Notifica>> getNotifiche(@PathVariable Long idVenditore)
-//    {
-//        List<Notifica> notifiche = venditoreService.getNotifiche(idVenditore);
-//        return ResponseEntity.ok(notifiche);
-//    }
-    //TODO per natale mi da un problema
+    @GetMapping("/{idVenditore}/notifiche")
+    public ResponseEntity<List<Notifica>> getNotifiche(@PathVariable Long idVenditore)
+    {
+        List<Notifica> notifiche = venditoreService.getNotifiche(idVenditore);
+        return ResponseEntity.ok(notifiche);
+      }
 
     @GetMapping("/{idVenditore}/prodotti/venduti")
     public ResponseEntity<List<Prodotto>> getProdottiVenduti(@PathVariable Long idVenditore)
