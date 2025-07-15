@@ -1,65 +1,69 @@
 import React, { useState, useEffect } from 'react';
-import { ApiService } from '../../Services/ApiService';
+import Vendor from "../../Components/Vendor/Vendor.jsx";
+import { VenditoreApiService } from '../../Services/VenditoreApiService.js';
 
 const VendorDashboard = () => {
-    const [products, setProducts] = useState([]);
-    const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '' });
 
+    //TODO implementare il servizio di login per prendere l'id
+    const [idVenditore] = useState(1);
+    const [prodottiInVendita, setProdottiInVendita] = useState([]);
+    const [prodottiVenduti, setProdottiVenduti] = useState([]);
+    const [notifiche, setNotifiche] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+
+    // Caricamento dati
     useEffect(() => {
-        const fetchProducts = async () => {
-            const data = await ApiService.getProducts();
-            setProducts(data);
+        const fetchData = async () => {
+            try {
+                const [inVendita, venduti, notif] = await Promise.all([
+                    VenditoreApiService.getProdottiInVendita(idVenditore),
+                    VenditoreApiService.getProdottiVenduti(idVenditore),
+                    VenditoreApiService.getNotifiche(idVenditore)
+                ]);
+                setProdottiInVendita(inVendita);
+                setProdottiVenduti(venduti);
+                setNotifiche(notif);
+            } catch (err) {
+                setError('Errore nel caricamento: ' + err.message);
+            } finally {
+                setLoading(false);
+            }
         };
-        fetchProducts();
-    }, []);
+        fetchData();
+    }, [idVenditore]);
 
-    const handleAddProduct = async () => {
-        const addedProduct = await ApiService.addProduct(newProduct);
-        setProducts([...products, addedProduct]);
+    const handleAddProduct = async (newProduct) => {
+        try {
+            await VenditoreApiService.aggiungiProdotto(newProduct);
+            const updated = await VenditoreApiService.getProdottiInVendita(idVenditore);
+            setProdottiInVendita(updated);
+            setSuccess('Prodotto aggiunto!');
+        } catch (err) {
+            setError('Errore: ' + err.message);
+        }
     };
 
-    const handleDeleteProduct = async (productId) => {
-        await ApiService.deleteProduct(productId);
-        setProducts(products.filter((product) => product.id !== productId));
+    const refreshNotifiche = async () => {
+        const updated = await VenditoreApiService.getNotifiche(idVenditore);
+        setNotifiche(updated);
     };
+
+    if (loading) return <div>Caricamento...</div>;
 
     return (
-        <div>
-            <h1>Vendor Dashboard</h1>
-            <div>
-                <h2>Add Product</h2>
-                <input
-                    type="text"
-                    placeholder="Name"
-                    value={newProduct.name}
-                    onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                />
-                <input
-                    type="text"
-                    placeholder="Description"
-                    value={newProduct.description}
-                    onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
-                />
-                <input
-                    type="number"
-                    placeholder="Price"
-                    value={newProduct.price}
-                    onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-                />
-                <button onClick={handleAddProduct}>Add Product</button>
-            </div>
-            <div>
-                <h2>Products</h2>
-                {products.map((product) => (
-                    <div key={product.id}>
-                        <h3>{product.name}</h3>
-                        <p>{product.description}</p>
-                        <p>Price: ${product.price}</p>
-                        <button onClick={() => handleDeleteProduct(product.id)}>Delete</button>
-                    </div>
-                ))}
-            </div>
-        </div>
+        <Vendor
+            prodottiInVendita={prodottiInVendita}
+            prodottiVenduti={prodottiVenduti}
+            notifiche={notifiche}
+            loading={loading}
+            error={error}
+            success={success}
+            onAddProduct={handleAddProduct}
+            onRefreshNotifiche={refreshNotifiche}
+            />
+
     );
 };
 
