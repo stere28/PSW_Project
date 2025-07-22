@@ -1,7 +1,13 @@
+import {AuthService} from "./AuthService.js";
+
 const BASE_URL = "http://localhost:9090/API/venditore";
 
 export const VenditoreApiService = {
-    aggiungiProdotto: async (prodotto, idVenditore) => {
+
+
+
+    aggiungiProdotto: async (prodotto) => {
+        const idVenditore = AuthService.getUserId();
         const response = await fetch(`${BASE_URL}/${idVenditore}/prodotti/aggiunta`, {
             method: "POST",
             headers: {
@@ -15,7 +21,8 @@ export const VenditoreApiService = {
         return response.json();
     },
 
-    getProdottiInVendita: async (idVenditore) => {
+    getProdottiInVendita: async () => {
+        const idVenditore = AuthService.getUserId();
         const response = await fetch(`${BASE_URL}/${idVenditore}/prodotti/in-vendita`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -23,7 +30,8 @@ export const VenditoreApiService = {
         return response.json();
     },
 
-    getProdottiVenduti: async (idVenditore) => {
+    getProdottiVenduti: async () => {
+        const idVenditore = AuthService.getUserId();
         const response = await fetch(`${BASE_URL}/${idVenditore}/prodotti/venduti`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -31,7 +39,8 @@ export const VenditoreApiService = {
         return response.json();
     },
 
-    getNotifiche: async (idVenditore) => {
+    getNotifiche: async () => {
+        const idVenditore = AuthService.getUserId();
         const response = await fetch(`${BASE_URL}/${idVenditore}/notifiche`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
