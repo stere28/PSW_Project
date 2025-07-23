@@ -21,8 +21,9 @@ export class AuthService {
 
     // Login
     static login() {
+        const currentUrl = window.location.href;
         return keycloak.login({
-            redirectUri: window.location.origin
+            redirectUri: currentUrl
         });
     }
 
