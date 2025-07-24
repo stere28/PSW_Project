@@ -1,4 +1,8 @@
-package it.unical.ecommerce.repositories;
+package it.unical.mormannoshop.repositories;
 
-public interface VenditoreRepository {
+
+import it.unical.mormannoshop.entities.Venditore;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface VenditoreRepository extends JpaRepository<Venditore,Long> {
 }

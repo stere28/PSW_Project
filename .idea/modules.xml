@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/backend/MormannoShop.iml" filepath="$PROJECT_DIR$/backend/MormannoShop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PSW_Project.iml" filepath="$PROJECT_DIR$/.idea/PSW_Project.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,75 @@
+services:
+
+  mysql-keycloak:
+    image: mysql:8.0
+    container_name: keycloak-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mormannoshop_keycloak
+      MYSQL_USER: mormannouser
+      MYSQL_PASSWORD: mormannopassword
+    ports:
+      - "3305:3306"
+    volumes:
+      - keycloak_mysql_data:/var/lib/mysql
+    networks:
+      - mormanno-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 10
+
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:25.0.1
+    command:
+    - start-dev
+    - --verbose
+    - --import-realm
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./keycloak/import:/opt/keycloak/data/import/
+    depends_on:
+      mysql-keycloak:
+        condition: service_healthy
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: mysql
+      KC_DB_URL_HOST: mysql-keycloak
+      KC_DB_URL_DATABASE: mormannoshop_keycloak
+      KC_DB_USERNAME: mormannouser
+      KC_DB_PASSWORD: mormannopassword
+      KC_HTTP_ENABLED: "true"
+      KC_HOSTNAME_STRICT: "false"
+      KC_FEATURES: token-exchange
+    networks:
+      - mormanno-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mormanno-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mormannoshop
+      MYSQL_USER: mormanno
+      MYSQL_PASSWORD: mormannopassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - mormanno-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+volumes:
+  mysql_data:
+  keycloak_mysql_data:
+
+networks:
+  mormanno-network:
+    driver: bridge
