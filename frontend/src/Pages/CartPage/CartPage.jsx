@@ -6,6 +6,7 @@ const CartPage = () => {
     const [cartItems, setCartItems] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    //TODO implementa la chiamata api sulla base dell'id dell'utente
     useEffect(() => {
         const fetchCartItems = async () => {
             setLoading(true);

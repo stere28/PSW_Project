@@ -705,7 +705,7 @@
         "client.secret.creation.time": "1752135838",
         "backchannel.logout.session.required": "true",
         "login_theme": "keycloak",
-        "post.logout.redirect.uris": "http://localhost:5173/",
+        "post.logout.redirect.uris": "http://localhost:5173",
         "display.on.consent.screen": "false",
         "oauth2.device.authorization.grant.enabled": "false",
         "backchannel.logout.revoke.offline.tokens": "false"

@@ -45,11 +45,14 @@ const UserProfile = () => {
                     <div className="dropdown-divider"></div>
 
                     <div className="dropdown-section">
-                        <h4>Ruoli:</h4>
+                        <h4>Ruolo:</h4>
                         <div className="roles-list">
-                            {user?.roles?.map(role => (
-                                <span key={role} className="role-badge">{role}</span>
-                            ))}
+                            {user?.roles
+                                ?.filter(role => role === 'user' || role === 'venditore')
+                                ?.map(role => (
+                                    <span key={role} className="role-badge">{role}</span>
+                                ))
+                            }
                         </div>
                     </div>
 

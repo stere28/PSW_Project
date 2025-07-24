@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ApiService } from '../../Services/ApiService';
+import './Home.css'
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -37,107 +38,131 @@ const Home = () => {
     };
 
     return (
-        <div>
+        <div className="container">
             <h1>Prodotti</h1>
-            <div>
-                <label>
-                    Search:
-                    <input
-                        type="text"
-                        onChange={(e) =>
-                            setFilters({ ...filters, search: e.target.value })
-                        }
-                    />
-                </label>
 
-                <label>
-                    Category:
-                    <select
-                        onChange={(e) =>
-                            setFilters({ ...filters, category: e.target.value })
-                        }
-                    >
-                        <option value="">All</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="home">Home</option>
-                    </select>
-                </label>
+            <div className="filters-container">
+                <div className="filter-group">
+                    <div>
+                        <label className="filter-label">Search</label>
+                        <input
+                            type="text"
+                            className="filter-input"
+                            onChange={(e) => setFilters({ ...filters, search: e.target.value })}
+                            placeholder="Search products..."
+                        />
+                    </div>
 
-                <label>
-                    Price Range:
-                    <input
-                        type="number"
-                        placeholder="Min"
-                        onChange={(e) =>
-                            setFilters({ ...filters, minPrice: e.target.value })
-                        }
-                    />
-                    <input
-                        type="number"
-                        placeholder="Max"
-                        onChange={(e) =>
-                            setFilters({ ...filters, maxPrice: e.target.value })
-                        }
-                    />
-                </label>
+                    <div>
+                        <label className="filter-label">Category</label>
+                        <select
+                            className="filter-select"
+                            onChange={(e) => setFilters({ ...filters, category: e.target.value })}
+                        >
+                            <option value="">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="home">Home</option>
+                        </select>
+                    </div>
 
-                <label>
-                    Rating:
-                    <select
-                        onChange={(e) =>
-                            setFilters({ ...filters, rating: e.target.value })
-                        }
-                    >
-                        <option value="">All</option>
-                        <option value="1">1 Star</option>
-                        <option value="2">2 Stars</option>
-                        <option value="3">3 Stars</option>
-                        <option value="4">4 Stars</option>
-                        <option value="5">5 Stars</option>
-                    </select>
-                </label>
+                    <div>
+                        <label className="filter-label">Price Range</label>
+                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <input
+                                type="number"
+                                className="filter-input"
+                                placeholder="Min"
+                                onChange={(e) => setFilters({ ...filters, minPrice: e.target.value })}
+                                style={{ flex: 1 }}
+                            />
+                            <input
+                                type="number"
+                                className="filter-input"
+                                placeholder="Max"
+                                onChange={(e) => setFilters({ ...filters, maxPrice: e.target.value })}
+                                style={{ flex: 1 }}
+                            />
+                        </div>
+                    </div>
 
-                <label>
-                    Sort By:
-                    <select
-                        onChange={(e) => setSortOrder(e.target.value)}
-                        value={sortOrder}
-                    >
-                        <option value="price-asc">Price: Low to High</option>
-                        <option value="price-desc">Price: High to Low</option>
-                        <option value="name-asc">Name: A to Z</option>
-                        <option value="name-desc">Name: Z to A</option>
-                        <option value="rating-asc">Rating: Low to High</option>
-                        <option value="rating-desc">Rating: High to Low</option>
-                    </select>
-                </label>
+                    <div>
+                        <label className="filter-label">Minimum Rating</label>
+                        <select
+                            className="filter-select"
+                            onChange={(e) => setFilters({ ...filters, rating: e.target.value })}
+                        >
+                            <option value="">All Ratings</option>
+                            <option value="1">⭐ 1+ Stars</option>
+                            <option value="2">⭐⭐ 2+ Stars</option>
+                            <option value="3">⭐⭐⭐ 3+ Stars</option>
+                            <option value="4">⭐⭐⭐⭐ 4+ Stars</option>
+                            <option value="5">⭐⭐⭐⭐⭐ 5 Stars</option>
+                        </select>
+                    </div>
 
-                <button onClick={applyFiltersAndSort}>Apply Filters & Sort</button>
+                    <div>
+                        <label className="filter-label">Sort By</label>
+                        <select
+                            className="filter-select"
+                            onChange={(e) => setSortOrder(e.target.value)}
+                            value={sortOrder}
+                        >
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="name-asc">Name: A to Z</option>
+                            <option value="name-desc">Name: Z to A</option>
+                            <option value="rating-asc">Rating: Low to High</option>
+                            <option value="rating-desc">Rating: High to Low</option>
+                        </select>
+                    </div>
+                </div>
 
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <button className="apply-btn" onClick={applyFiltersAndSort}>
+                    Apply Filters & Sort
+                </button>
+
+                {error && <p className="error-message">{error}</p>}
             </div>
 
-            <div>
-                <button onClick={() => setPage((prev) => Math.max(prev - 1, 1))}>
+            <div className="pagination">
+                <button
+                    className="page-btn"
+                    onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                    disabled={page === 1}
+                >
                     Previous Page
                 </button>
-                <span style={{ margin: '0 10px' }}>Page: {page}</span>
-                <button onClick={() => setPage((prev) => prev + 1)}>
+                <span className="page-info">Page: {page}</span>
+                <button
+                    className="page-btn"
+                    onClick={() => setPage((prev) => prev + 1)}
+                >
                     Next Page
                 </button>
             </div>
 
-            <div className="product-list" style={{ marginTop: '20px' }}>
+            <div className="product-list">
                 {products.length === 0 ? (
-                    <p>No products found.</p>
+                    <div className="empty-state">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p>No products found matching your criteria</p>
+                    </div>
                 ) : (
                     products.map((product) => (
-                        <div key={product.id} className="product-item" style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
-                            <h2>{product.name}</h2>
-                            <p>{product.description}</p>
-                            <p>Price: ${product.price}</p>
-                            <p>Rating: {product.rating} ⭐</p>
+                        <div key={product.id} className="product-item">
+                            <div className="product-content">
+                                <h2>{product.name}</h2>
+                                <p>{product.description}</p>
+                                <p className="product-price">Price: ${product.price}</p>
+                                <span className="product-rating">
+                {product.rating} {Array.from({ length: 5 }).map((_, i) => (
+                                    <span key={i}>{i < Math.floor(product.rating) ? '★' : '☆'}</span>
+                                ))}
+              </span>
+                            </div>
                         </div>
                     ))
                 )}
