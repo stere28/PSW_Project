@@ -23,9 +23,9 @@ public class VenditoreService
     @Autowired
     private VenditoreRepository venditoreRepository;
 
-    public Prodotto aggiungiProdotto(AggiuntaProdottoRequest request)
+    public Prodotto aggiungiProdotto(Long idVenditore, AggiuntaProdottoRequest request)
     {
-        Venditore venditore = venditoreRepository.findById(request.getIdVenditore())
+        Venditore venditore = venditoreRepository.findById(idVenditore)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Venditore non registrato"));
 
         Prodotto prodotto = Prodotto.builder()

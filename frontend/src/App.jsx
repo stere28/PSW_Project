@@ -1,35 +1,80 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from 'frontend/public/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './Context/AuthProvider';
+import { useAuth } from './hooks/useAuth';
+import ProtectedRoute from './components/Auth/ProtectedRoute';
+import UserProfile from './components/Auth/UserProfile';
+import Navbar from './Components/Navbar/Navbar.jsx';
+import Cart from './Components/Cart/Cart.jsx';
+import Login from './Pages/Login/LoginPage.jsx';
+import Home from './Pages/Home/Home.jsx';
+import VendorDashboard from './Pages/VendorDashboard/VendorDashboard.jsx';
+import Vendor from './components/Vendor/Vendor';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const AppContent = () => {
+    const { isAuthenticated, loading } = useAuth();
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    if (loading) {
+        return (
+            <div className="app-loading">
+                <div className="loading-spinner"></div>
+                <p>Caricamento applicazione...</p>
+            </div>
+        );
+    }
 
-export default App
+    return (
+        <BrowserRouter>
+            <div className="app">
+                {isAuthenticated && (
+                    <header className="app-header">
+                        <h1>MormannoShop</h1>
+                        <UserProfile />
+                    </header>
+                )}
+                <Navbar />
+                <main className="app-main">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route
+                            path="/cart"
+                            element={
+                                <ProtectedRoute>
+                                    <Cart />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/vendor-dashboard"
+                            element={
+                                <ProtectedRoute requiredRole="venditore">
+                                    <VendorDashboard />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/vendor"
+                            element={
+                                <ProtectedRoute requiredRole="venditore">
+                                    <Vendor />
+                                </ProtectedRoute>
+                            }
+                        />
+                    </Routes>
+                </main>
+            </div>
+        </BrowserRouter>
+    );
+};
+
+const App = () => {
+    return (
+        <AuthProvider>
+            <AppContent />
+        </AuthProvider>
+    );
+};
+
+export default App;

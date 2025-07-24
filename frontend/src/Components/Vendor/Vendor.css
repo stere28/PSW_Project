@@ -1,0 +1,68 @@
+.vendor-container {
+    padding: 2rem;
+    text-align: left;
+}
+
+.add-product-form {
+    margin-bottom: 2rem;
+}
+
+.add-product-form input {
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-product-form button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #646cff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-product-form button:hover {
+    background-color: #535bf2;
+}
+
+.product-list {
+    margin-top: 2rem;
+}
+
+.product-item {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 1rem;
+}
+
+.product-item h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.product-item p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.product-item button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.product-item button:hover {
+    background-color: #e63946;
+}
