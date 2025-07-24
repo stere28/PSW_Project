@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
+import { ApiService } from '../../services/ApiService';
 
 const CartPage = () => {
     const { isAuthenticated, hasRole, user } = useAuth();
     const [cartItems, setCartItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    //TODO implementa la chiamata api sulla base dell'id dell'utente
     useEffect(() => {
         const fetchCartItems = async () => {
             setLoading(true);
+            setError(null);
             try {
-                // Simula fetch da API
-                const items = [
-                    { id: 1, name: 'Product 1', price: 10 },
-                    { id: 2, name: 'Product 2', price: 20 },
-                ];
+                const items = await ApiService.getCart(user.id);
                 setCartItems(items);
-            } catch (error) {
-                console.error('Errore durante il recupero del carrello:', error);
+            } catch (err) {
+                console.error('Errore:', err);
+                setError(err.message || 'Errore imprevisto');
             } finally {
                 setLoading(false);
             }
@@ -27,10 +26,27 @@ const CartPage = () => {
         if (isAuthenticated && hasRole('user')) {
             fetchCartItems();
         }
-    }, [isAuthenticated, user?.roles]); // evita funzioni come dipendenze
+    }, [isAuthenticated, user?.id]);
 
-    const handleCheckout = () => {
-        alert('Funzionalità di checkout da implementare.');
+    const handleRemove = async (productId) => {
+        try {
+            const updatedCart = await ApiService.removeFromCart(user.id, productId);
+            setCartItems(updatedCart);
+        } catch (err) {
+            console.error('Errore rimozione:', err);
+            alert(err.message);
+        }
+    };
+
+    const handleCheckout = async () => {
+        try {
+            await ApiService.checkoutCart(user.id);
+            alert('Checkout completato con successo.');
+            setCartItems([]);
+        } catch (err) {
+            console.error('Errore checkout:', err);
+            alert(`Errore: ${err.message}`);
+        }
     };
 
     if (!isAuthenticated) {
@@ -47,6 +63,8 @@ const CartPage = () => {
         <div className="cart-page">
             <h1>Carrello di {user?.username}</h1>
 
+            {error && <p className="error">Errore: {error}</p>}
+
             {loading ? (
                 <p>Caricamento...</p>
             ) : cartItems.length > 0 ? (
@@ -56,6 +74,7 @@ const CartPage = () => {
                             <div key={item.id} className="cart-item">
                                 <h2>{item.name}</h2>
                                 <p>Prezzo: €{item.price}</p>
+                                <button onClick={() => handleRemove(item.id)}>Rimuovi</button>
                             </div>
                         ))}
                     </div>
