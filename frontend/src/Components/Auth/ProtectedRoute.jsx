@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth } from '../../Context/AuthContext.jsx';
+import { useAuth } from "../../hooks/useAuth.js";
 import LoginPage from "../../Pages/Login/LoginPage.jsx";
 
 const ProtectedRoute = ({ children, requiredRole = null }) => {
