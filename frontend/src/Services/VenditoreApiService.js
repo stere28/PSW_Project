@@ -4,8 +4,6 @@ const BASE_URL = "http://localhost:9090/API/venditore";
 
 export const VenditoreApiService = {
 
-
-
     aggiungiProdotto: async (prodotto) => {
         const idVenditore = AuthService.getUserId();
         const response = await fetch(`${BASE_URL}/${idVenditore}/prodotti/aggiunta`, {

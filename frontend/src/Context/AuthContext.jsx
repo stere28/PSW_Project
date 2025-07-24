@@ -91,6 +91,7 @@ export const AuthProvider = ({ children }) => {
         logout,
         refreshToken,
         hasRole,
+        clearError: () => setError(null)
     };
 
     return (
