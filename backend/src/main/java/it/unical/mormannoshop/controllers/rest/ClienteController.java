@@ -13,11 +13,17 @@ import java.util.Set;
 @RestController
 @RequestMapping("/API")
 public class ClienteController {
-    //TODO aggiungere pre autorize per verificare che il cliente che autorizza sia quello corretto
-    //TODO manca un metodo per creare il cliente
+    //TODO Aggiungi un metodo per creare il cliente
 
     @Autowired
     private ClienteService clienteService;
+
+    @GetMapping("/carrello")
+    public ResponseEntity<Set<Prodotto>> visualizzaCarrello(Authentication authentication) {
+        String idCliente = JwtUtils.getUserId(authentication);
+        Set<Prodotto> carrello = clienteService.getCarrello(idCliente);
+        return ResponseEntity.ok(carrello);
+    }
 
     @PostMapping("/carrello/add")
     public ResponseEntity<Set<Prodotto>> aggiungiAlCarrello(
@@ -43,18 +49,11 @@ public class ClienteController {
         return ResponseEntity.ok(carrello);
     }
 
-    @GetMapping("/carrello")
-    public ResponseEntity<Set<Prodotto>> visualizzaCarrello(Authentication authentication) {
-        String idCliente = JwtUtils.getUserId(authentication);
-        Set<Prodotto> carrello = clienteService.getCarrello(idCliente);
-
-        return ResponseEntity.ok(carrello);
-    }
-
     @PostMapping("/carrello/checkout")
     public ResponseEntity<String> checkout(Authentication authentication) {
         String idCliente = JwtUtils.getUserId(authentication);
         clienteService.checkout(idCliente);
         return ResponseEntity.ok("Checkout completato con successo.");
     }
+
 }

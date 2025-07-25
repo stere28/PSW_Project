@@ -6,8 +6,10 @@ import lombok.*;
 
 import java.util.*;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "venditori")
 public class Venditore extends User {
@@ -18,6 +20,6 @@ public class Venditore extends User {
 
     @OneToMany
     @JsonIgnore
-    private List<Notifica> notifiche;
+    private List<Notifica> notifiche = new LinkedList<>();
 
 }

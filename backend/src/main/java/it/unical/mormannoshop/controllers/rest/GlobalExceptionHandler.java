@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    //TODO Esposizione di Informazioni Sensibili
+
     @ExceptionHandler(ProdottoNonTrovatoException.class)
     public ResponseEntity<String> handleProdottoNonTrovato(ProdottoNonTrovatoException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());

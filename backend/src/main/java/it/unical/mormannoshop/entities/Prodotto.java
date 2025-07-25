@@ -7,17 +7,15 @@ import lombok.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-//TODO Quando usi @OneToMany, @ManyToOne ecc.,
-// evita @Data di Lombok che include toString() e equals(),
-// causando ricorsione infinita.
-//TODO @data non garantisce deepCopy quindi comporta un potenziale vulnerabilità
-
+@Getter
+@Setter
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "prodotti")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
 public class Prodotto {
 
     @Id
@@ -46,4 +44,7 @@ public class Prodotto {
     private double prezzo;
 
     private boolean venduto;
+
+    //aggiungi un metodo per marcare il prodotto come venduto
+
 }

@@ -39,12 +39,12 @@ public class ClienteService {
         Prodotto prodotto = prodottoRepository.findById(idProdotto)
                 .orElseThrow(() -> new ProdottoNonTrovatoException(idProdotto));
 
+        Cliente cliente = clienteRepository.findById(idCliente)
+                .orElseThrow(() -> new ClienteNonTrovatoException(idCliente));
+
         if (prodotto.isVenduto()) {
             throw new ProdottoNonDisponibileException(idProdotto);
         }
-
-        Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(() -> new ClienteNonTrovatoException(idCliente));
 
         cliente.aggiungiAlCarrello(prodotto);
         clienteRepository.save(cliente);
@@ -59,7 +59,7 @@ public class ClienteService {
                 .orElseThrow(() -> new ProdottoNonTrovatoException(idProdotto));
 
         cliente.rimuoviDalCarrello(prodotto);
-        clienteRepository.save(cliente);
+        clienteRepository.save(cliente); //TODO non serve
     }
 
     @Transactional(readOnly = true)
@@ -80,34 +80,35 @@ public class ClienteService {
             throw new IllegalStateException("Il carrello è vuoto");
         }
 
-        // Crea un nuovo ordine
+        // Crea nuovo ordine
         Ordine ordine = new Ordine();
         ordine.setCliente(cliente);
-        ordine.setProdotti(new HashSet<>(carrello));
-        ordine = ordineRepository.save(ordine);
 
-        // Verifica che tutti i prodotti siano ancora disponibili
-        // Marca tutti i prodotti come venduti e associali all'ordine
-        for (Prodotto prodotto : carrello) {
-            Prodotto prodottoAggiornato = prodottoRepository.findById(prodotto.getId())
-                    .orElseThrow(() -> new ProdottoNonTrovatoException(prodotto.getId()));
+        cliente.getOrdini().add(ordine);
 
-            if (prodottoAggiornato.isVenduto()) {
-                throw new ProdottoNonDisponibileException(prodotto.getId());
+        Set<Prodotto> prodottiVenduti = new HashSet<>();
+
+        for (Prodotto p : carrello) {
+            Prodotto prodottoDb = prodottoRepository.findById(p.getId())
+                    .orElseThrow(() -> new ProdottoNonTrovatoException(p.getId()));
+
+            if (prodottoDb.isVenduto()) {
+                throw new ProdottoNonDisponibileException(p.getId());
             }
 
-            prodotto.setVenduto(true);
-            prodotto.setOrdine(ordine);
-            prodottoRepository.save(prodotto);
+            prodottoDb.setVenduto(true);
+            prodottoDb.setOrdine(ordine);
+            prodottoDb.getClienti().remove(cliente);
+            prodottiVenduti.add(prodottoDb);
 
-            //notifica vendita dei prodotti ai venditori
-            publisher.publishEvent(new ProdottoVendutoEvent(this, prodotto, prodotto.getVenditore()));
+            publisher.publishEvent(new ProdottoVendutoEvent(this, prodottoDb, prodottoDb.getVenditore()));
         }
 
-        // Svuota il carrello
+        ordine.setProdotti(prodottiVenduti);
+        ordineRepository.save(ordine);
         cliente.svuotaCarrello();
-        clienteRepository.save(cliente);
     }
+
 
 }
 

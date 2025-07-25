@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="7099d1ec-1aab-46f3-a1b2-939730c7d526" name="Changes" comment="Aggiunta del frontend">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/VenditoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/VenditoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/Ordine.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/Ordine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/Prodotto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/Prodotto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/Venditore.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/Venditore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/services/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/services/ClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/it/unical/mormannoshop/ClienteServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/it/unical/mormannoshop/ClienteServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/resources/application-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/resources/application-test.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Components/Cart/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Cart/Cart.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.jsx" afterDir="false" />
@@ -44,6 +51,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -54,6 +64,10 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 5
+}]]></component>
   <component name="ProjectId" id="2zK8OL9cg2qBHp6KpU2LrnuDrP0" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -62,31 +76,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;182f69a887f4781d87f1d404444e6780&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
+    "spring.configuration.checksum": "182f69a887f4781d87f1d404444e6780",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -95,7 +112,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration name="MormannoShopApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="MormannoShop" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="it.unical.mormannoshop.MormannoShopApplication" />
@@ -103,6 +120,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -124,6 +158,7 @@
       <workItem from="1751995802713" duration="133000" />
       <workItem from="1751995957449" duration="209000" />
       <workItem from="1751996180255" duration="27000" />
+      <workItem from="1753437904840" duration="1250000" />
     </task>
     <task id="LOCAL-00001" summary="Rimossa dipendenza duplicata">
       <option name="closed" value="true" />
