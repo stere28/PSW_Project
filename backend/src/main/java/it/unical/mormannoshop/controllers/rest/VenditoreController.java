@@ -5,8 +5,10 @@ import it.unical.mormannoshop.entities.Prodotto;
 import it.unical.mormannoshop.payload.AggiuntaProdottoRequest;
 import it.unical.mormannoshop.payload.AggiuntaProdottoResponse;
 import it.unical.mormannoshop.services.VenditoreService;
+import it.unical.mormannoshop.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -14,16 +16,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("API/venditore")
-public class VenditoreController
-{
-    // TODO id string
+public class VenditoreController {
+
     @Autowired
     private VenditoreService venditoreService;
 
-    @PostMapping("/{idVenditore}/prodotti/aggiunta")
-    public ResponseEntity<AggiuntaProdottoResponse> aggiungiProdotto(@PathVariable String idVenditore,
-                                                                     @RequestBody AggiuntaProdottoRequest request)
-    {
+    @PostMapping("/prodotti/aggiunta")
+    public ResponseEntity<AggiuntaProdottoResponse> aggiungiProdotto(
+            @RequestBody AggiuntaProdottoRequest request,
+            Authentication authentication) {
+
+        String idVenditore = JwtUtils.getUserId(authentication);
         Prodotto prodotto = venditoreService.aggiungiProdotto(idVenditore, request);
 
         URI location = URI.create("/API/prodotti/" + prodotto.getId());
@@ -33,25 +36,29 @@ public class VenditoreController
                 .body(new AggiuntaProdottoResponse(prodotto.getId()));
     }
 
-    @GetMapping("/{idVenditore}/prodotti/in-vendita")
-    public ResponseEntity<List<Prodotto>> getProdottiInVendita(@PathVariable String idVenditore)
-    {
+    @GetMapping("/prodotti/in-vendita")
+    public ResponseEntity<List<Prodotto>> getProdottiInVendita(Authentication authentication) {
+        String idVenditore = JwtUtils.getUserId(authentication);
         List<Prodotto> prodotti = venditoreService.getProdottiInVendita(idVenditore);
+
         return ResponseEntity.ok(prodotti);
     }
 
-    @GetMapping("/{idVenditore}/notifiche")
-    public ResponseEntity<List<Notifica>> getNotifiche(@PathVariable String idVenditore)
-    {
+    @GetMapping("/notifiche")
+    public ResponseEntity<List<Notifica>> getNotifiche(Authentication authentication) {
+        String idVenditore = JwtUtils.getUserId(authentication);
         List<Notifica> notifiche = venditoreService.getNotifiche(idVenditore);
-        return ResponseEntity.ok(notifiche);
-      }
 
-    @GetMapping("/{idVenditore}/prodotti/venduti")
-    public ResponseEntity<List<Prodotto>> getProdottiVenduti(@PathVariable String idVenditore)
-    {
+        return ResponseEntity.ok(notifiche);
+    }
+
+    @GetMapping("/prodotti/venduti")
+    public ResponseEntity<List<Prodotto>> getProdottiVenduti(Authentication authentication) {
+        String idVenditore = JwtUtils.getUserId(authentication);
         List<Prodotto> prodotti = venditoreService.getProdottiVenduti(idVenditore);
+
         return ResponseEntity.ok(prodotti);
     }
 
+    //TODO delete prodotto 
 }

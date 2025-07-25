@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7099d1ec-1aab-46f3-a1b2-939730c7d526" name="Changes" comment="Aggiunta del frontend">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/ClienteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/VenditoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/VenditoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/repositories/ClienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/repositories/ClienteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/repositories/VenditoreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/repositories/VenditoreRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/security/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/services/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/services/ClienteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/services/VenditoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/services/VenditoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/utils/exceptions/ClienteNonTrovatoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/utils/exceptions/ClienteNonTrovatoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/utils/exceptions/VenditoreNonTrovatoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/utils/exceptions/VenditoreNonTrovatoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/it/unical/mormannoshop/ClienteServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/it/unical/mormannoshop/ClienteServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Components/Cart/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Cart/Cart.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Services/ApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Services/ApiService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
