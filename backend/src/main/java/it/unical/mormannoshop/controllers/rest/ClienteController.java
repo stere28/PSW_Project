@@ -1,20 +1,18 @@
 package it.unical.mormannoshop.controllers.rest;
 
-
 import it.unical.mormannoshop.entities.Prodotto;
 import it.unical.mormannoshop.services.ClienteService;
+import it.unical.mormannoshop.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Set;
 
-
 @RestController
-@RequestMapping("/API/{idCliente}")
+@RequestMapping("/API")
 public class ClienteController {
-
     //TODO aggiungere pre autorize per verificare che il cliente che autorizza sia quello corretto
     //TODO manca un metodo per creare il cliente
 
@@ -22,30 +20,41 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @PostMapping("/carrello/add")
-    public Set<Prodotto> aggiungiAlCarrello(
-            @PathVariable Long idCliente,
-            @RequestParam Long idProdotto) {
+    public ResponseEntity<Set<Prodotto>> aggiungiAlCarrello(
+            @RequestParam Long idProdotto,
+            Authentication authentication) {
+
+        String idCliente = JwtUtils.getUserId(authentication);
         clienteService.aggiungiProdottoAlCarrello(idProdotto, idCliente);
-        return clienteService.getCarrello(idCliente);
+        Set<Prodotto> carrello = clienteService.getCarrello(idCliente);
+
+        return ResponseEntity.ok(carrello);
     }
 
     @DeleteMapping("/carrello/remove")
-    public Set<Prodotto> rimuoviDalCarrello(
-            @PathVariable Long idCliente,
-            @RequestParam Long idProdotto) {
+    public ResponseEntity<Set<Prodotto>> rimuoviDalCarrello(
+            @RequestParam Long idProdotto,
+            Authentication authentication) {
+
+        String idCliente = JwtUtils.getUserId(authentication);
         clienteService.rimuoviProdottoDalCarrello(idProdotto, idCliente);
-        return clienteService.getCarrello(idCliente);
+        Set<Prodotto> carrello = clienteService.getCarrello(idCliente);
+
+        return ResponseEntity.ok(carrello);
     }
 
     @GetMapping("/carrello")
-    public Set<Prodotto> visualizzaCarrello(@PathVariable Long idCliente) {
-        return clienteService.getCarrello(idCliente);
+    public ResponseEntity<Set<Prodotto>> visualizzaCarrello(Authentication authentication) {
+        String idCliente = JwtUtils.getUserId(authentication);
+        Set<Prodotto> carrello = clienteService.getCarrello(idCliente);
+
+        return ResponseEntity.ok(carrello);
     }
 
     @PostMapping("/carrello/checkout")
-    public ResponseEntity<?> checkout(@PathVariable Long idCliente) {
+    public ResponseEntity<String> checkout(Authentication authentication) {
+        String idCliente = JwtUtils.getUserId(authentication);
         clienteService.checkout(idCliente);
         return ResponseEntity.ok("Checkout completato con successo.");
     }
 }
-

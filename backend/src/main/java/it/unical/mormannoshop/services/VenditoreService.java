@@ -17,13 +17,14 @@ import java.util.List;
 @Service
 public class VenditoreService
 {
+
     @Autowired
     private ProdottoRepository prodottoRepository;
 
     @Autowired
     private VenditoreRepository venditoreRepository;
 
-    public Prodotto aggiungiProdotto(Long idVenditore, AggiuntaProdottoRequest request)
+    public Prodotto aggiungiProdotto(String idVenditore, AggiuntaProdottoRequest request)
     {
         Venditore venditore = venditoreRepository.findById(idVenditore)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Venditore non registrato"));
@@ -39,21 +40,21 @@ public class VenditoreService
         return prodottoRepository.save(prodotto);
     }
 
-    public List<Prodotto> getProdottiInVendita(Long idVenditore)
+    public List<Prodotto> getProdottiInVendita(String idVenditore)
     {
         Venditore venditore = venditoreRepository.findById(idVenditore)
                 .orElseThrow(() -> new VenditoreNonTrovatoException(idVenditore));
         return prodottoRepository.findByVenditoreAndVenduto(venditore,false);
     }
 
-    public List<Prodotto> getProdottiVenduti(Long idVenditore)
+    public List<Prodotto> getProdottiVenduti(String idVenditore)
     {
         Venditore venditore = venditoreRepository.findById(idVenditore)
                 .orElseThrow(() -> new VenditoreNonTrovatoException(idVenditore));
         return prodottoRepository.findByVenditoreAndVenduto(venditore,true);
     }
 
-    public List<Notifica> getNotifiche(Long idVenditore)
+    public List<Notifica> getNotifiche(String idVenditore)
     {
         Venditore venditore = venditoreRepository.findById(idVenditore)
                 .orElseThrow(() -> new VenditoreNonTrovatoException(idVenditore));

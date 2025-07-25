@@ -35,7 +35,7 @@ public class ClienteService {
     private ApplicationEventPublisher publisher;
 
     @Transactional//(isolation = Isolation.READ_COMMITTED)
-    public void aggiungiProdottoAlCarrello(Long idProdotto, Long idCliente) {
+    public void aggiungiProdottoAlCarrello(Long idProdotto, String idCliente) {
         Prodotto prodotto = prodottoRepository.findById(idProdotto)
                 .orElseThrow(() -> new ProdottoNonTrovatoException(idProdotto));
 
@@ -51,7 +51,7 @@ public class ClienteService {
     }
 
     @Transactional//(isolation = Isolation.READ_COMMITTED)
-    public void rimuoviProdottoDalCarrello(Long idProdotto, Long idCliente) {
+    public void rimuoviProdottoDalCarrello(Long idProdotto, String idCliente) {
         Cliente cliente = clienteRepository.findById(idCliente)
                 .orElseThrow(() -> new ClienteNonTrovatoException(idCliente));
 
@@ -63,14 +63,14 @@ public class ClienteService {
     }
 
     @Transactional(readOnly = true)
-    public Set<Prodotto> getCarrello(Long idCliente) {
+    public Set<Prodotto> getCarrello(String idCliente) {
         Cliente cliente = clienteRepository.findById(idCliente)
                 .orElseThrow(() -> new ClienteNonTrovatoException(idCliente));
         return cliente.getProdotti();
     }
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public void checkout(Long idCliente) {
+    public void checkout(String idCliente) {
         Cliente cliente = clienteRepository.findById(idCliente)
                 .orElseThrow(() -> new ClienteNonTrovatoException(idCliente));
 

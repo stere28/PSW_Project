@@ -16,11 +16,12 @@ import java.util.List;
 @RequestMapping("API/venditore")
 public class VenditoreController
 {
+    // TODO id string
     @Autowired
     private VenditoreService venditoreService;
 
     @PostMapping("/{idVenditore}/prodotti/aggiunta")
-    public ResponseEntity<AggiuntaProdottoResponse> aggiungiProdotto(@PathVariable Long idVenditore,
+    public ResponseEntity<AggiuntaProdottoResponse> aggiungiProdotto(@PathVariable String idVenditore,
                                                                      @RequestBody AggiuntaProdottoRequest request)
     {
         Prodotto prodotto = venditoreService.aggiungiProdotto(idVenditore, request);
@@ -33,21 +34,21 @@ public class VenditoreController
     }
 
     @GetMapping("/{idVenditore}/prodotti/in-vendita")
-    public ResponseEntity<List<Prodotto>> getProdottiInVendita(@PathVariable Long idVenditore)
+    public ResponseEntity<List<Prodotto>> getProdottiInVendita(@PathVariable String idVenditore)
     {
         List<Prodotto> prodotti = venditoreService.getProdottiInVendita(idVenditore);
         return ResponseEntity.ok(prodotti);
     }
 
     @GetMapping("/{idVenditore}/notifiche")
-    public ResponseEntity<List<Notifica>> getNotifiche(@PathVariable Long idVenditore)
+    public ResponseEntity<List<Notifica>> getNotifiche(@PathVariable String idVenditore)
     {
         List<Notifica> notifiche = venditoreService.getNotifiche(idVenditore);
         return ResponseEntity.ok(notifiche);
       }
 
     @GetMapping("/{idVenditore}/prodotti/venduti")
-    public ResponseEntity<List<Prodotto>> getProdottiVenduti(@PathVariable Long idVenditore)
+    public ResponseEntity<List<Prodotto>> getProdottiVenduti(@PathVariable String idVenditore)
     {
         List<Prodotto> prodotti = venditoreService.getProdottiVenduti(idVenditore);
         return ResponseEntity.ok(prodotti);

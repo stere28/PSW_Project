@@ -31,7 +31,8 @@ public class ClienteServiceTest {
     @Autowired
     private OrdineRepository ordineRepository;
 
-    private static Long cliente1Id, cliente2Id, prodottoId;
+    private static String cliente1Id, cliente2Id;
+    private static Long prodottoId;
 
     @BeforeEach
     void setUp() {
