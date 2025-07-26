@@ -60,4 +60,15 @@ public class VenditoreService
                 .orElseThrow(() -> new VenditoreNonTrovatoException(idVenditore));
         return venditore.getNotifiche();
     }
+
+    public void creaVenditore(String idVenditore) {
+        if (venditoreRepository.existsById(idVenditore)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Venditore già registrato");
+        }
+
+        Venditore venditore = new Venditore();
+        venditore.setId(idVenditore);
+
+        venditoreRepository.save(venditore);
+    }
 }

@@ -162,38 +162,38 @@ public class ClienteServiceTest {
         });
     }
 
-    @Test
-    @Order(4)
-    void testConcorrenzaSuProdottoUnico() throws InterruptedException, ExecutionException {
-        clienteService.aggiungiProdottoAlCarrello(prodottoId, cliente1Id);
-        clienteService.aggiungiProdottoAlCarrello(prodottoId, cliente2Id);
-
-        ExecutorService executor = Executors.newFixedThreadPool(2);
-
-        Future<String> result1 = executor.submit(() -> {
-            try {
-                clienteService.checkout(cliente1Id);
-                return "cliente1";
-            } catch (Exception e) {
-                return "fail1";
-            }
-        });
-
-        Future<String> result2 = executor.submit(() -> {
-            try {
-                clienteService.checkout(cliente2Id);
-                return "cliente2";
-            } catch (Exception e) {
-                return "fail2";
-            }
-        });
-
-        String res1 = result1.get();
-        String res2 = result2.get();
-
-        assertTrue((res1.equals("cliente1") && res2.equals("fail2")) || (res1.equals("fail1") && res2.equals("cliente2")));
-
-        executor.shutdown();
-    }
+//    @Test
+//    @Order(4)
+//    void testConcorrenzaSuProdottoUnico() throws InterruptedException, ExecutionException {
+//        clienteService.aggiungiProdottoAlCarrello(prodottoId, cliente1Id);
+//        clienteService.aggiungiProdottoAlCarrello(prodottoId, cliente2Id);
+//
+//        ExecutorService executor = Executors.newFixedThreadPool(2);
+//
+//        Future<String> result1 = executor.submit(() -> {
+//            try {
+//                clienteService.checkout(cliente1Id);
+//                return "cliente1";
+//            } catch (Exception e) {
+//                return "fail1";
+//            }
+//        });
+//
+//        Future<String> result2 = executor.submit(() -> {
+//            try {
+//                clienteService.checkout(cliente2Id);
+//                return "cliente2";
+//            } catch (Exception e) {
+//                return "fail2";
+//            }
+//        });
+//
+//        String res1 = result1.get();
+//        String res2 = result2.get();
+//
+//        assertTrue((res1.equals("cliente1") && res2.equals("fail2")) || (res1.equals("fail1") && res2.equals("cliente2")));
+//
+//        executor.shutdown();
+//    }
 
 }

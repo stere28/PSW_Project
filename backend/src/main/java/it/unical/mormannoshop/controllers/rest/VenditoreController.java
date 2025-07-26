@@ -60,5 +60,12 @@ public class VenditoreController {
         return ResponseEntity.ok(prodotti);
     }
 
+    @PostMapping("")
+    public ResponseEntity<String> creaVenditore(Authentication authentication) {
+        String idVenditore = JwtUtils.getUserId(authentication);
+        venditoreService.creaVenditore(idVenditore);
+        return ResponseEntity.ok("Cliente creato con successo.");
+    }
+
     //TODO delete prodotto 
 }

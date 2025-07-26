@@ -7,8 +7,12 @@ import lombok.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
+@ToString
 @EqualsAndHashCode(callSuper = true)
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "clienti")
 public class Cliente extends User {

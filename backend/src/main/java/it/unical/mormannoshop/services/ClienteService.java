@@ -109,6 +109,16 @@ public class ClienteService {
         cliente.svuotaCarrello();
     }
 
+    public void creaCliente(String idCliente) {
+        if (clienteRepository.existsById(idCliente)) {
+            throw new IllegalStateException("Cliente con ID " + idCliente + " già esistente."); //TODO
+        }
+
+        Cliente cliente = new Cliente();
+        cliente.setId(idCliente);
+        clienteRepository.save(cliente);
+    }
+
 
 }
 

@@ -13,7 +13,6 @@ import java.util.Set;
 @RestController
 @RequestMapping("/API")
 public class ClienteController {
-    //TODO Aggiungi un metodo per creare il cliente
 
     @Autowired
     private ClienteService clienteService;
@@ -55,5 +54,10 @@ public class ClienteController {
         clienteService.checkout(idCliente);
         return ResponseEntity.ok("Checkout completato con successo.");
     }
-
+    @PostMapping("/cliente")
+    public ResponseEntity<String> creaCliente(Authentication authentication) {
+        String idCliente = JwtUtils.getUserId(authentication);
+        clienteService.creaCliente(idCliente);
+        return ResponseEntity.ok("Cliente creato con successo.");
+    }
 }
