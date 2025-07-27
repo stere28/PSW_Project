@@ -5,7 +5,7 @@ import { useAuth } from './hooks/useAuth';
 import ProtectedRoute from './components/Auth/ProtectedRoute';
 import UserProfile from './components/Auth/UserProfile';
 import Navbar from './Components/Navbar/Navbar.jsx';
-import Cart from './Components/Cart/Cart.jsx';
+import Cart from './Pages/CartPage/CartPage.jsx';
 import Login from './Pages/Login/LoginPage.jsx';
 import Home from './Pages/Home/Home.jsx';
 import VendorDashboard from './Pages/VendorDashboard/VendorDashboard.jsx';

@@ -33,25 +33,46 @@ const handleResponse = async (response, retryCallback = null) => {
 };
 
 export const ApiService = {
-    // Prodotti (pubblici - nessuna autenticazione richiesta)
+    // === PRODOTTI (pubblici - nessuna autenticazione richiesta) ===
+
     getProducts: async () => {
         const response = await fetch(`${BASE_URL}/prodotti`);
         await handleResponse(response);
         return response.json();
     },
 
-    getProductPaged: async (page, size, sortBy = 'id') => {
-        const response = await fetch(`${BASE_URL}/prodotti/paged?page=${page}&size=${size}&sortBy=${sortBy}`);
+    getProductsPaged: async (pageNumber = 0, pageSize = 10, sortBy = 'id') => {
+        const response = await fetch(`${BASE_URL}/prodotti/paged?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}`);
         await handleResponse(response);
         return response.json();
     },
 
     getProductsByFilter: async (filters) => {
-        const queryParams = new URLSearchParams(filters).toString();
-        const response = await fetch(`${BASE_URL}/prodotti/filter?${queryParams}`);
+        const {
+            text,
+            categoria,
+            minPrice,
+            maxPrice,
+            sortBy = 'id',
+            pageNumber = 0,
+            pageSize = 10
+        } = filters;
+
+        const params = new URLSearchParams();
+        if (text) params.append('text', text);
+        if (categoria) params.append('categoria', categoria);
+        if (minPrice !== undefined) params.append('minPrice', minPrice);
+        if (maxPrice !== undefined) params.append('maxPrice', maxPrice);
+        params.append('sortBy', sortBy);
+        params.append('pageNumber', pageNumber);
+        params.append('pageSize', pageSize);
+
+        const response = await fetch(`${BASE_URL}/prodotti/filter?${params.toString()}`);
         await handleResponse(response);
         return response.json();
     },
+
+    // === CARRELLO (richiede autenticazione) ===
 
     getCart: async () => {
         const makeRequest = async () => {
@@ -65,9 +86,9 @@ export const ApiService = {
         return response.json();
     },
 
-    addToCart: async (productId) => {
+    addToCart: async (idProdotto) => {
         const makeRequest = async () => {
-            const response = await fetch(`${BASE_URL}/carrello/add?idProdotto=${productId}`, {
+            const response = await fetch(`${BASE_URL}/carrello/add?idProdotto=${idProdotto}`, {
                 method: "POST",
                 headers: getAuthHeaders()
             });
@@ -78,9 +99,9 @@ export const ApiService = {
         return response.json();
     },
 
-    removeFromCart: async (productId) => {
+    removeFromCart: async (idProdotto) => {
         const makeRequest = async () => {
-            const response = await fetch(`${BASE_URL}/carrello/remove?idProdotto=${productId}`, {
+            const response = await fetch(`${BASE_URL}/carrello/remove?idProdotto=${idProdotto}`, {
                 method: "DELETE",
                 headers: getAuthHeaders()
             });
@@ -104,6 +125,35 @@ export const ApiService = {
         return response.text();
     },
 
+    // === CLIENTE ===
+
+    createClient: async () => {
+        const makeRequest = async () => {
+            const response = await fetch(`${BASE_URL}/cliente`, {
+                method: "POST",
+                headers: getAuthHeaders()
+            });
+            return await handleResponse(response, makeRequest);
+        };
+
+        const response = await makeRequest();
+        return response.text();
+    },
+
+    // === VENDITORE ===
+
+    createSeller: async () => {
+        const makeRequest = async () => {
+            const response = await fetch(`${BASE_URL}/venditore`, {
+                method: "POST",
+                headers: getAuthHeaders()
+            });
+            return await handleResponse(response, makeRequest);
+        };
+
+        const response = await makeRequest();
+        return response.text();
+    },
 
     addProduct: async (product) => {
         const makeRequest = async () => {
@@ -155,7 +205,8 @@ export const ApiService = {
         return response.json();
     },
 
-    // Metodi generici per operazioni CRUD sui prodotti (deprecati - sostituiti da metodi specifici)
+    // === GESTIONE PRODOTTI VENDITORE (UPDATE/DELETE) ===
+
     updateProduct: async (productId, product) => {
         const makeRequest = async () => {
             const response = await fetch(`${BASE_URL}/venditore/prodotti/${productId}`, {
@@ -180,6 +231,6 @@ export const ApiService = {
         };
 
         const response = await makeRequest();
-        return response.json();
+        return response.text();
     }
 };
