@@ -2,7 +2,6 @@ package it.unical.mormannoshop.controllers.rest;
 
 import it.unical.mormannoshop.entities.Notifica;
 import it.unical.mormannoshop.entities.Prodotto;
-import it.unical.mormannoshop.payload.AggiornamentoProdottoRequest;
 import it.unical.mormannoshop.payload.AggiuntaProdottoRequest;
 import it.unical.mormannoshop.payload.AggiuntaProdottoResponse;
 import it.unical.mormannoshop.services.VenditoreService;

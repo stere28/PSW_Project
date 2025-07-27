@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7099d1ec-1aab-46f3-a1b2-939730c7d526" name="Changes" comment="Aggiunta del frontend">
+      <change afterPath="$PROJECT_DIR$/frontend/src/Services/userDataService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/hooks/useUserData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/VenditoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/VenditoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/payload/AggiornamentoProdottoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/services/VenditoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/services/VenditoreService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/utils/exceptions/ProdottoGiaVendutoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/utils/exceptions/ProdottoGiaVendutoException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Cart/Cart.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Cart/Cart.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Context/AuthProvider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Context/AuthProvider.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +87,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.MormannoShopApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
@@ -102,7 +113,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ClienteServiceTest">
+  <component name="RunManager" selected="Spring Boot.MormannoShopApplication">
     <configuration name="ClienteServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MormannoShop" />
       <extension name="coverage">
@@ -141,8 +152,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ClienteServiceTest" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="JUnit.ClienteServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -169,6 +180,7 @@
       <workItem from="1753437904840" duration="1250000" />
       <workItem from="1753520215287" duration="5503000" />
       <workItem from="1753537342992" duration="347000" />
+      <workItem from="1753562732547" duration="4296000" />
     </task>
     <task id="LOCAL-00001" summary="Rimossa dipendenza duplicata">
       <option name="closed" value="true" />

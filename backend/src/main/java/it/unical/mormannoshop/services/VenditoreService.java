@@ -3,7 +3,6 @@ package it.unical.mormannoshop.services;
 import it.unical.mormannoshop.entities.Notifica;
 import it.unical.mormannoshop.entities.Prodotto;
 import it.unical.mormannoshop.entities.Venditore;
-import it.unical.mormannoshop.payload.AggiornamentoProdottoRequest;
 import it.unical.mormannoshop.payload.AggiuntaProdottoRequest;
 import it.unical.mormannoshop.repositories.ProdottoRepository;
 import it.unical.mormannoshop.repositories.VenditoreRepository;

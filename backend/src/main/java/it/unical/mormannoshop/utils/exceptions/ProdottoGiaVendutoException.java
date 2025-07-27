@@ -8,3 +8,4 @@ public class ProdottoGiaVendutoException extends RuntimeException {
     public ProdottoGiaVendutoException(String message, Throwable cause) {
         super(message, cause);
     }
+}
