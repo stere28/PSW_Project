@@ -8,8 +8,25 @@ export class AuthService {
                 onLoad: 'check-sso',
                 silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
                 pkceMethod: 'S256',
-                checkLoginIframe: false
+                checkLoginIframe: false,
+                enableLogging: true
             });
+
+            // Setup automatic token refresh
+            if (authenticated) {
+                this.setupTokenRefresh();
+
+                // Setup event listeners
+                keycloak.onTokenExpired = () => {
+                    console.log('Token expired, refreshing...');
+                    this.refreshToken();
+                };
+
+                keycloak.onAuthRefreshError = () => {
+                    console.error('Auth refresh error, logging out...');
+                    this.logout();
+                };
+            }
 
             console.log('Keycloak initialized, authenticated:', authenticated);
             return authenticated;
@@ -17,6 +34,17 @@ export class AuthService {
             console.error('Keycloak initialization failed:', error);
             throw error;
         }
+    }
+
+    // Setup automatic token refresh
+    static setupTokenRefresh() {
+        setInterval(() => {
+            if (keycloak.authenticated) {
+                keycloak.updateToken(70).catch(() => {
+                    console.error('Failed to refresh token');
+                });
+            }
+        }, 60000); // Refresh every minute
     }
 
     // Login
@@ -36,7 +64,7 @@ export class AuthService {
 
     // Verifica se l'utente è autenticato
     static isAuthenticated() {
-        return keycloak.authenticated;
+        return keycloak.authenticated && keycloak.token;
     }
 
     // Ottieni token di accesso
@@ -76,9 +104,13 @@ export class AuthService {
     }
 
     // Refresh token
-    static async refreshToken() {
+    static async refreshToken(minValidity = 30) {
         try {
-            return await keycloak.updateToken(30);
+            const refreshed = await keycloak.updateToken(minValidity);
+            if (refreshed) {
+                console.log('Token refreshed successfully');
+            }
+            return refreshed;
         } catch (error) {
             console.error('Token refresh failed:', error);
             throw error;
@@ -94,5 +126,18 @@ export class AuthService {
         } : {
             'Content-Type': 'application/json'
         };
+    }
+
+    // Verifica se il token è valido (non scaduto)
+    static isTokenValid() {
+        if (!keycloak.token) return false;
+        return keycloak.isTokenExpired() === false;
+    }
+
+    // Ottieni tempo rimanente del token in secondi
+    static getTokenTimeLeft() {
+        if (!keycloak.tokenParsed) return 0;
+        const now = Math.ceil(Date.now() / 1000);
+        return keycloak.tokenParsed.exp - now;
     }
 }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import {ApiService} from "../../Services/ApiService.js";
 import './Cart.css';
 
+//TODO implementare l'inserimento nel carrello
 const Cart = () => {
     const [cartItems, setCartItems] = useState([
         { id: 1, name: 'Product 1', price: 10 },

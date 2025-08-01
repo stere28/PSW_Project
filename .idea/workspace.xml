@@ -5,17 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7099d1ec-1aab-46f3-a1b2-939730c7d526" name="Changes" comment="Aggiunta del frontend">
-      <change afterPath="$PROJECT_DIR$/frontend/src/Services/userDataService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/hooks/useUserData.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/Ruolo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/GlobalExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/VenditoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/VenditoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/payload/AggiornamentoProdottoRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/security/KeycloakTokenConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/security/KeycloakTokenConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/security/SecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/services/VenditoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/services/VenditoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/utils/exceptions/ProdottoGiaVendutoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/utils/exceptions/ProdottoGiaVendutoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Cart/Cart.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Cart/Cart.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/silent-check-sso.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/silent-check-sso.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Auth/ProtectedRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Auth/ProtectedRoute.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Auth/UserProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Auth/UserProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Cart/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Cart/Cart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Context/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Context/AuthContext.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Context/AuthProvider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Context/AuthProvider.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Home/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Home/Home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Home/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Login/LoginPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Login/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Login/LoginPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/VendorDashboard/VendorDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/VendorDashboard/VendorDashboard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/VendorDashboard/VendorDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/VendorDashboard/VendorDashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Services/ApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Services/ApiService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Services/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Services/AuthService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/useAuth.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +44,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -75,45 +94,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "JUnit.ClienteServiceTest.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.MormannoShopApplication.executor": "Run",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing",
-    "spring.configuration.checksum": "182f69a887f4781d87f1d404444e6780",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ClienteServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.MormannoShopApplication.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;182f69a887f4781d87f1d404444e6780&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
         <entry key="com.haulmont.rcb.reactComponents" value="false" />
         <entry key="com.haulmont.rcb.reactInspector" value="false" />
+        <entry key="com.haulmont.rcb.storybook" value="false" />
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MormannoShopApplication">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
     <configuration name="ClienteServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MormannoShop" />
       <extension name="coverage">
@@ -153,6 +176,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="HTTP Request.generated-requests | #1" />
         <item itemvalue="JUnit.ClienteServiceTest" />
       </list>
     </recent_temporary>
@@ -181,6 +205,8 @@
       <workItem from="1753520215287" duration="5503000" />
       <workItem from="1753537342992" duration="347000" />
       <workItem from="1753562732547" duration="4296000" />
+      <workItem from="1754032667817" duration="1660000" />
+      <workItem from="1754034640673" duration="7866000" />
     </task>
     <task id="LOCAL-00001" summary="Rimossa dipendenza duplicata">
       <option name="closed" value="true" />

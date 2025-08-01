@@ -10,15 +10,15 @@ const getAuthHeaders = () => {
 // Funzione helper per gestire le risposte con errori di autenticazione
 const handleResponse = async (response, retryCallback = null) => {
     if (response.status === 401) {
-        // Token scaduto, prova a fare refresh
+        console.log('401 Unauthorized - attempting token refresh');
         try {
             await AuthService.refreshToken();
-            // Ritenta la richiesta se è stata fornita una callback
             if (retryCallback) {
+                console.log('Retrying request with new token');
                 return await retryCallback();
             }
         } catch (error) {
-            // Se il refresh fallisce, reindirizza al login
+            console.error('Token refresh failed, logging out');
             await AuthService.logout();
             throw new Error('Sessione scaduta. Effettua nuovamente il login.');
         }
@@ -36,40 +36,64 @@ export const ApiService = {
     // === PRODOTTI (pubblici - nessuna autenticazione richiesta) ===
 
     getProducts: async () => {
-        const response = await fetch(`${BASE_URL}/prodotti`);
-        await handleResponse(response);
-        return response.json();
+        try {
+            const response = await fetch(`${BASE_URL}/prodotti`);
+            await handleResponse(response);
+            return response.json();
+        } catch (error) {
+            console.error('Error fetching products:', error);
+            throw error;
+        }
     },
 
-    getProductsPaged: async (pageNumber = 0, pageSize = 10, sortBy = 'id') => {
-        const response = await fetch(`${BASE_URL}/prodotti/paged?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}`);
-        await handleResponse(response);
-        return response.json();
+    getProductPaged: async (pageNumber = 0, pageSize = 10, sortBy = 'id') => {
+        try {
+            const response = await fetch(`${BASE_URL}/prodotti/paged?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}`);
+            await handleResponse(response);
+            return response.json();
+        } catch (error) {
+            console.error('Error fetching paged products:', error);
+            throw error;
+        }
     },
 
     getProductsByFilter: async (filters) => {
-        const {
-            text,
-            categoria,
-            minPrice,
-            maxPrice,
-            sortBy = 'id',
-            pageNumber = 0,
-            pageSize = 10
-        } = filters;
+        try {
+            const {
+                search,
+                category,
+                minPrice,
+                maxPrice,
+                rating,
+                sort = 'price-asc',
+                pageNumber = 0,
+                pageSize = 50
+            } = filters;
 
-        const params = new URLSearchParams();
-        if (text) params.append('text', text);
-        if (categoria) params.append('categoria', categoria);
-        if (minPrice !== undefined) params.append('minPrice', minPrice);
-        if (maxPrice !== undefined) params.append('maxPrice', maxPrice);
-        params.append('sortBy', sortBy);
-        params.append('pageNumber', pageNumber);
-        params.append('pageSize', pageSize);
+            const params = new URLSearchParams();
+            if (search) params.append('text', search);
+            if (category) params.append('categoria', category);
+            if (minPrice !== undefined && minPrice !== '') params.append('minPrice', minPrice);
+            if (maxPrice !== undefined && maxPrice !== '') params.append('maxPrice', maxPrice);
+            if (rating) params.append('rating', rating);
 
-        const response = await fetch(`${BASE_URL}/prodotti/filter?${params.toString()}`);
-        await handleResponse(response);
-        return response.json();
+            // Convert sort format
+            let sortBy = 'id';
+            if (sort.includes('price')) sortBy = 'prezzo';
+            else if (sort.includes('name')) sortBy = 'nome';
+            else if (sort.includes('rating')) sortBy = 'rating';
+
+            params.append('sortBy', sortBy);
+            params.append('pageNumber', pageNumber);
+            params.append('pageSize', pageSize);
+
+            const response = await fetch(`${BASE_URL}/prodotti/filter?${params.toString()}`);
+            await handleResponse(response);
+            return response.json();
+        } catch (error) {
+            console.error('Error fetching filtered products:', error);
+            throw error;
+        }
     },
 
     // === CARRELLO (richiede autenticazione) ===
@@ -82,8 +106,13 @@ export const ApiService = {
             return await handleResponse(response, makeRequest);
         };
 
-        const response = await makeRequest();
-        return response.json();
+        try {
+            const response = await makeRequest();
+            return response.json();
+        } catch (error) {
+            console.error('Error fetching cart:', error);
+            throw error;
+        }
     },
 
     addToCart: async (idProdotto) => {
@@ -95,8 +124,13 @@ export const ApiService = {
             return await handleResponse(response, makeRequest);
         };
 
-        const response = await makeRequest();
-        return response.json();
+        try {
+            const response = await makeRequest();
+            return response.json();
+        } catch (error) {
+            console.error('Error adding to cart:', error);
+            throw error;
+        }
     },
 
     removeFromCart: async (idProdotto) => {
@@ -108,8 +142,13 @@ export const ApiService = {
             return await handleResponse(response, makeRequest);
         };
 
-        const response = await makeRequest();
-        return response.json();
+        try {
+            const response = await makeRequest();
+            return response.json();
+        } catch (error) {
+            console.error('Error removing from cart:', error);
+            throw error;
+        }
     },
 
     checkoutCart: async () => {
@@ -121,8 +160,13 @@ export const ApiService = {
             return await handleResponse(response, makeRequest);
         };
 
-        const response = await makeRequest();
-        return response.text();
+        try {
+            const response = await makeRequest();
+            return response.text();
+        } catch (error) {
+            console.error('Error during checkout:', error);
+            throw error;
+        }
     },
 
     // === CLIENTE ===
@@ -136,8 +180,13 @@ export const ApiService = {
             return await handleResponse(response, makeRequest);
         };
 
-        const response = await makeRequest();
-        return response.text();
+        try {
+            const response = await makeRequest();
+            return response.text();
+        } catch (error) {
+            console.error('Error creating client:', error);
+            throw error;
+        }
     },
 
     // === VENDITORE ===
@@ -151,8 +200,13 @@ export const ApiService = {
             return await handleResponse(response, makeRequest);
         };
 
-        const response = await makeRequest();
-        return response.text();
+        try {
+            const response = await makeRequest();
+            return response.text();
+        } catch (error) {
+            console.error('Error creating seller:', error);
+            throw error;
+        }
     },
 
     addProduct: async (product) => {
@@ -165,8 +219,13 @@ export const ApiService = {
             return await handleResponse(response, makeRequest);
         };
 
-        const response = await makeRequest();
-        return response.json();
+        try {
+            const response = await makeRequest();
+            return response.json();
+        } catch (error) {
+            console.error('Error adding product:', error);
+            throw error;
+        }
     },
 
     getSellerProducts: async () => {
@@ -177,8 +236,13 @@ export const ApiService = {
             return await handleResponse(response, makeRequest);
         };
 
-        const response = await makeRequest();
-        return response.json();
+        try {
+            const response = await makeRequest();
+            return response.json();
+        } catch (error) {
+            console.error('Error fetching seller products:', error);
+            throw error;
+        }
     },
 
     getSellerSoldProducts: async () => {
@@ -189,8 +253,13 @@ export const ApiService = {
             return await handleResponse(response, makeRequest);
         };
 
-        const response = await makeRequest();
-        return response.json();
+        try {
+            const response = await makeRequest();
+            return response.json();
+        } catch (error) {
+            console.error('Error fetching sold products:', error);
+            throw error;
+        }
     },
 
     getSellerNotifications: async () => {
@@ -201,8 +270,13 @@ export const ApiService = {
             return await handleResponse(response, makeRequest);
         };
 
-        const response = await makeRequest();
-        return response.json();
+        try {
+            const response = await makeRequest();
+            return response.json();
+        } catch (error) {
+            console.error('Error fetching notifications:', error);
+            throw error;
+        }
     },
 
     // === GESTIONE PRODOTTI VENDITORE (UPDATE/DELETE) ===
@@ -217,8 +291,13 @@ export const ApiService = {
             return await handleResponse(response, makeRequest);
         };
 
-        const response = await makeRequest();
-        return response.json();
+        try {
+            const response = await makeRequest();
+            return response.json();
+        } catch (error) {
+            console.error('Error updating product:', error);
+            throw error;
+        }
     },
 
     deleteProduct: async (productId) => {
@@ -230,7 +309,12 @@ export const ApiService = {
             return await handleResponse(response, makeRequest);
         };
 
-        const response = await makeRequest();
-        return response.text();
+        try {
+            const response = await makeRequest();
+            return response.text();
+        } catch (error) {
+            console.error('Error deleting product:', error);
+            throw error;
+        }
     }
 };

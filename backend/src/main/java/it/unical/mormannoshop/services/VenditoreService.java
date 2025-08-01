@@ -10,8 +10,11 @@ import it.unical.mormannoshop.utils.exceptions.ProdottoGiaVendutoException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonAppartieneAlVenditoreException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonTrovatoException;
 import it.unical.mormannoshop.utils.exceptions.VenditoreNonTrovatoException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -27,6 +30,18 @@ public class VenditoreService
     @Autowired
     private VenditoreRepository venditoreRepository;
 
+    @Transactional
+    public Venditore getOrCreate(Authentication authentication)
+    {
+        if (authentication != null && authentication.getPrincipal() instanceof Jwt jwt) {
+            String userId = jwt.getSubject();
+            return venditoreRepository.findById(userId)
+                    .orElseGet(() -> venditoreRepository.save(creaVenditore(userId)));
+        }
+        throw new IllegalStateException("Impossibile determinare l'ID utente dal JWT");
+    }
+
+    @Transactional
     public Prodotto aggiungiProdotto(String idVenditore, AggiuntaProdottoRequest request)
     {
         Venditore venditore = venditoreRepository.findById(idVenditore)
@@ -43,6 +58,7 @@ public class VenditoreService
         return prodottoRepository.save(prodotto);
     }
 
+    @Transactional
     public List<Prodotto> getProdottiInVendita(String idVenditore)
     {
         Venditore venditore = venditoreRepository.findById(idVenditore)
@@ -50,6 +66,7 @@ public class VenditoreService
         return prodottoRepository.findByVenditoreAndVenduto(venditore,false);
     }
 
+    @Transactional
     public List<Prodotto> getProdottiVenduti(String idVenditore)
     {
         Venditore venditore = venditoreRepository.findById(idVenditore)
@@ -57,6 +74,7 @@ public class VenditoreService
         return prodottoRepository.findByVenditoreAndVenduto(venditore,true);
     }
 
+    @Transactional
     public List<Notifica> getNotifiche(String idVenditore)
     {
         Venditore venditore = venditoreRepository.findById(idVenditore)
@@ -64,15 +82,14 @@ public class VenditoreService
         return venditore.getNotifiche();
     }
 
-    public void creaVenditore(String idVenditore) {
+    private Venditore creaVenditore(String idVenditore) {
         if (venditoreRepository.existsById(idVenditore)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Venditore già registrato");
         }
 
         Venditore venditore = new Venditore();
         venditore.setId(idVenditore);
-
-        venditoreRepository.save(venditore);
+        return venditoreRepository.save(venditore);
     }
 
     public void eliminaProdotto(String idVenditore, Long idProdotto) {

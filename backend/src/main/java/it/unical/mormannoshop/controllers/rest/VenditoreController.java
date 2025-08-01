@@ -2,6 +2,7 @@ package it.unical.mormannoshop.controllers.rest;
 
 import it.unical.mormannoshop.entities.Notifica;
 import it.unical.mormannoshop.entities.Prodotto;
+import it.unical.mormannoshop.entities.Venditore;
 import it.unical.mormannoshop.payload.AggiuntaProdottoRequest;
 import it.unical.mormannoshop.payload.AggiuntaProdottoResponse;
 import it.unical.mormannoshop.services.VenditoreService;
@@ -20,6 +21,12 @@ public class VenditoreController {
 
     @Autowired
     private VenditoreService venditoreService;
+
+    @GetMapping("/me")
+    public Venditore getProfilo(Authentication authentication)
+    {
+        return venditoreService.getOrCreate(authentication);
+    }
 
     @PostMapping("/prodotti/aggiunta")
     public ResponseEntity<AggiuntaProdottoResponse> aggiungiProdotto(
@@ -58,13 +65,6 @@ public class VenditoreController {
         List<Prodotto> prodotti = venditoreService.getProdottiVenduti(idVenditore);
 
         return ResponseEntity.ok(prodotti);
-    }
-
-    @PostMapping("")
-    public ResponseEntity<String> creaVenditore(Authentication authentication) {
-        String idVenditore = JwtUtils.getUserId(authentication);
-        venditoreService.creaVenditore(idVenditore);
-        return ResponseEntity.ok("Cliente creato con successo.");
     }
 
     @DeleteMapping("/prodotti/{idProdotto}")

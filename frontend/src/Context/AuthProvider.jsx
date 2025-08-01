@@ -40,6 +40,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async () => {
         try {
+            setError(null);
             await AuthService.login();
         } catch (err) {
             setError('Errore durante il login');
@@ -49,6 +50,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
+            setError(null);
             await AuthService.logout();
             setIsAuthenticated(false);
             setUser(null);
@@ -60,11 +62,21 @@ export const AuthProvider = ({ children }) => {
 
     const refreshToken = async () => {
         try {
-            await AuthService.refreshToken();
-            return true;
+            const refreshed = await AuthService.refreshToken();
+            if (refreshed) {
+                // Aggiorna le informazioni utente dopo il refresh
+                const userInfo = AuthService.getUserInfo();
+                setUser(prev => ({
+                    ...prev,
+                    fullInfo: userInfo
+                }));
+            }
+            return refreshed;
         } catch (err) {
             setError('Errore durante il refresh del token');
             console.error('Token refresh error:', err);
+            // Se il refresh fallisce, forza il logout
+            await logout();
             return false;
         }
     };
@@ -82,7 +94,8 @@ export const AuthProvider = ({ children }) => {
         logout,
         refreshToken,
         hasRole,
-        clearError: () => setError(null)
+        clearError: () => setError(null),
+        updateAuth: initializeAuth // Per permettere aggiornamenti manuali
     };
 
     return (

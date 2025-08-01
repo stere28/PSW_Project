@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { useAuth } from '../../hooks/useAuth';
-import './LoginPage.css';
+import {useAuth} from "../../Context/AuthContext.jsx";
 
 const LoginPage = () => {
     const { login, loading, error, clearError } = useAuth();
