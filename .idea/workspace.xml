@@ -4,36 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7099d1ec-1aab-46f3-a1b2-939730c7d526" name="Changes" comment="Aggiunta del frontend">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/Ruolo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7099d1ec-1aab-46f3-a1b2-939730c7d526" name="Changes" comment="Migliorie: servizi di sicurezza e ui">
+      <change afterPath="$PROJECT_DIR$/frontend/src/Pages/Login/LoginPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/VenditoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/controllers/rest/VenditoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/security/KeycloakTokenConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/security/KeycloakTokenConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/security/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/services/VenditoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/it/unical/mormannoshop/services/VenditoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/silent-check-sso.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/silent-check-sso.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Auth/ProtectedRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Auth/ProtectedRoute.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Auth/UserProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Auth/UserProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Cart/Cart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Cart/Cart.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Context/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Context/AuthContext.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Context/AuthProvider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Context/AuthProvider.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Home/Home.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Home/Home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Home/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Login/LoginPage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/CartPage/CartPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Pages/Login/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/Login/LoginPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/VendorDashboard/VendorDashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/VendorDashboard/VendorDashboard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Pages/VendorDashboard/VendorDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Pages/VendorDashboard/VendorDashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Services/ApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Services/ApiService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Services/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Services/AuthService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/useAuth.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +181,7 @@
       <workItem from="1753537342992" duration="347000" />
       <workItem from="1753562732547" duration="4296000" />
       <workItem from="1754032667817" duration="1660000" />
-      <workItem from="1754034640673" duration="7866000" />
+      <workItem from="1754034640673" duration="9976000" />
     </task>
     <task id="LOCAL-00001" summary="Rimossa dipendenza duplicata">
       <option name="closed" value="true" />
@@ -280,7 +255,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751994554051</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Migliorie: servizi di sicurezza e ui">
+      <option name="closed" value="true" />
+      <created>1754054979933</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1754054979933</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,6 +303,8 @@
     <MESSAGE value="Aggiunta di funzioni per i venditori" />
     <MESSAGE value="Risolto TODO di salvataggio delle notifiche" />
     <MESSAGE value="Aggiunta del frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunta del frontend" />
+    <MESSAGE value="Migliorie frontend: servizi e ui" />
+    <MESSAGE value="Migliorie: servizi di sicurezza e ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migliorie: servizi di sicurezza e ui" />
   </component>
 </project>
