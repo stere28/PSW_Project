@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -22,6 +24,22 @@ public class SecurityConfiguration {
 
     @Value("${app.cors.allowed-origins:http://localhost:8080,http://localhost:5173}")
     private List<String> allowedOrigins;
+
+    //TODO probabilmente va rimosso quando si mette il backend nel docker
+    @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri:http://host.docker.internal:8080/realms/mormanno-shop/protocol/openid-connect/certs}")
+    private String jwkSetUri;
+
+    //TODO, errore di timeout nella connessione a keycloak da risolvere
+    @Bean
+    public JwtDecoder jwtDecoder() {
+        try {
+            return NimbusJwtDecoder.withJwkSetUri(jwkSetUri).build();
+        } catch (Exception e) {
+            System.err.println("Errore nella configurazione del JwtDecoder: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Impossibile configurare il JwtDecoder", e);
+        }
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -47,16 +65,19 @@ public class SecurityConfiguration {
                 })
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
+                                .decoder(jwtDecoder())
                                 .jwtAuthenticationConverter(new KeycloakTokenConverter())
                         )
                 )
                 .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint((request, response, authException) -> {
+                            System.err.println("Authentication error: " + authException.getMessage());
                             response.setStatus(401);
                             response.setContentType("application/json");
                             response.getWriter().write("{\"error\": \"Unauthorized\", \"message\": \"" + authException.getMessage() + "\"}");
                         })
                         .accessDeniedHandler((request, response, accessDeniedException) -> {
+                            System.err.println("Access denied: " + accessDeniedException.getMessage());
                             response.setStatus(403);
                             response.setContentType("application/json");
                             response.getWriter().write("{\"error\": \"Forbidden\", \"message\": \"Access denied\"}");
