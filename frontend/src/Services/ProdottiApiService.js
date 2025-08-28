@@ -24,11 +24,12 @@ export const ProdottiApiService = {
      */
     getPaged: async (pageNumber = 0, pageSize = 10, sortBy = 'id') => {
         try {
-            const response = await apiClient.get('/prodotti/paged', {
+            const response = await apiClient.get('/prodotti/filter', {
                 params: {
+                    sortBy,
                     pageNumber,
-                    pageSize,
-                    sortBy
+                    pageSize
+
                 }
             });
             return response.data;

@@ -32,9 +32,9 @@ public class ProdottiService {
     }
 
     @Transactional(readOnly = true)
-    public List<Prodotto> filterProducts(String text, String categoria, Double minPrice, Double maxPrice, String sortBy, int pageNumber, int pageSize) {
+    public List<Prodotto> filterProducts(String text, String categoria, Double minPrice, Double maxPrice, String sortBy, int pageNumber, int pageSize, boolean escludiVenduti) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(sortBy));
-        Specification<Prodotto> spec = ProdottoSpecifications.withFilters(text, categoria, minPrice, maxPrice);
+        Specification<Prodotto> spec = ProdottoSpecifications.withFilters(text, categoria, minPrice, maxPrice, escludiVenduti);
         return prodottoRepository.findAll(spec, pageable).getContent();
     }
 

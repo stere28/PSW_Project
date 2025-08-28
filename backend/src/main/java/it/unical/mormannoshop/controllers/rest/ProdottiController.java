@@ -36,10 +36,10 @@ public class ProdottiController {
             @RequestParam(required = false) Double maxPrice,
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "0") int pageNumber,
-            @RequestParam(defaultValue = "10") int pageSize) {
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam(defaultValue = "true") Boolean escludiVenduti) {
 
-        return prodottiService.filterProducts(text, categoria, minPrice, maxPrice, sortBy, pageNumber, pageSize);
+        return prodottiService.filterProducts(text, categoria, minPrice, maxPrice, sortBy, pageNumber, pageSize, escludiVenduti);
     }
     //TODO potrebbe essere utile usare ResponseEntity
-    //TODO aggiungere metodi per il venditore. come ad esempio l'aggiunta di un prodotto
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ProdottoSpecifications {
 
-    public static Specification<Prodotto> withFilters(String text, String categoria, Double minPrice, Double maxPrice) {
+    public static Specification<Prodotto> withFilters(String text, String categoria, Double minPrice, Double maxPrice, boolean escludiVenduti) {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 
@@ -31,6 +31,10 @@ public class ProdottoSpecifications {
                         cb.like(cb.lower(root.get("nome")), pattern),
                         cb.like(cb.lower(root.get("descrizione")), pattern)
                 ));
+            }
+
+            if (escludiVenduti) {
+                predicates.add(cb.equal(root.get("venduto"), false));
             }
 
             return cb.and(predicates.toArray(new Predicate[0]));
