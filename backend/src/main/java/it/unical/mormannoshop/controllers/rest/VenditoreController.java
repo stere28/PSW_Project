@@ -25,7 +25,7 @@ public class VenditoreController {
     @GetMapping("/me")
     public Venditore getProfilo(Authentication authentication)
     {
-        return venditoreService.getOrCreate(authentication);
+        return venditoreService.getProfilo(authentication);
     }
 
     @PostMapping("/prodotti/aggiunta")

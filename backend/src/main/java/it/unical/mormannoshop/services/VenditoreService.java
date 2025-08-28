@@ -9,7 +9,6 @@ import it.unical.mormannoshop.repositories.VenditoreRepository;
 import it.unical.mormannoshop.utils.exceptions.ProdottoGiaVendutoException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonAppartieneAlVenditoreException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonTrovatoException;
-import it.unical.mormannoshop.utils.exceptions.VenditoreNonTrovatoException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +30,7 @@ public class VenditoreService
     private VenditoreRepository venditoreRepository;
 
     @Transactional
-    public Venditore getOrCreate(Authentication authentication)
+    public Venditore getProfilo(Authentication authentication)
     {
         if (authentication != null && authentication.getPrincipal() instanceof Jwt jwt) {
             String userId = jwt.getSubject();
@@ -45,7 +44,7 @@ public class VenditoreService
     public Prodotto aggiungiProdotto(String idVenditore, AggiuntaProdottoRequest request)
     {
         Venditore venditore = venditoreRepository.findById(idVenditore)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Venditore non registrato"));
+                .orElseGet(() -> venditoreRepository.save(creaVenditore(idVenditore)));
 
         Prodotto prodotto = Prodotto.builder()
                 .venditore(venditore)
@@ -62,7 +61,7 @@ public class VenditoreService
     public List<Prodotto> getProdottiInVendita(String idVenditore)
     {
         Venditore venditore = venditoreRepository.findById(idVenditore)
-                .orElseThrow(() -> new VenditoreNonTrovatoException(idVenditore));
+                .orElseGet(() -> venditoreRepository.save(creaVenditore(idVenditore)));
         return prodottoRepository.findByVenditoreAndVenduto(venditore,false);
     }
 
@@ -70,7 +69,7 @@ public class VenditoreService
     public List<Prodotto> getProdottiVenduti(String idVenditore)
     {
         Venditore venditore = venditoreRepository.findById(idVenditore)
-                .orElseThrow(() -> new VenditoreNonTrovatoException(idVenditore));
+                .orElseGet(() -> venditoreRepository.save(creaVenditore(idVenditore)));
         return prodottoRepository.findByVenditoreAndVenduto(venditore,true);
     }
 
@@ -78,7 +77,7 @@ public class VenditoreService
     public List<Notifica> getNotifiche(String idVenditore)
     {
         Venditore venditore = venditoreRepository.findById(idVenditore)
-                .orElseThrow(() -> new VenditoreNonTrovatoException(idVenditore));
+                .orElseGet(() -> venditoreRepository.save(creaVenditore(idVenditore)));
         return venditore.getNotifiche();
     }
 
@@ -95,7 +94,7 @@ public class VenditoreService
     public void eliminaProdotto(String idVenditore, Long idProdotto) {
         // Verifica che il venditore esista
         Venditore venditore = venditoreRepository.findById(idVenditore)
-                .orElseThrow(() -> new VenditoreNonTrovatoException(idVenditore));
+                .orElseGet(() -> venditoreRepository.save(creaVenditore(idVenditore)));
 
         // Verifica che il prodotto esista
         Prodotto prodotto = prodottoRepository.findById(idProdotto)

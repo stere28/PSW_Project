@@ -1,9 +1,7 @@
 package it.unical.mormannoshop.controllers.rest;
 
-import it.unical.mormannoshop.utils.exceptions.ClienteNonTrovatoException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonDisponibileException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonTrovatoException;
-import it.unical.mormannoshop.utils.exceptions.VenditoreNonTrovatoException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonAppartieneAlVenditoreException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoGiaVendutoException;
 import lombok.Getter;
@@ -81,42 +79,6 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse);
-    }
-
-    @ExceptionHandler(ClienteNonTrovatoException.class)
-    public ResponseEntity<ErrorResponse> handleClienteNonTrovato(
-            ClienteNonTrovatoException ex,
-            HttpServletRequest request) {
-
-        log.warn("Cliente non trovato: {}", ex.getMessage());
-
-        ErrorResponse errorResponse = new ErrorResponse(
-                HttpStatus.NOT_FOUND.value(),
-                "Cliente non trovato",
-                "Il cliente specificato non è stato trovato",
-                request.getRequestURI(),
-                null
-        );
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
-    }
-
-    @ExceptionHandler(VenditoreNonTrovatoException.class)
-    public ResponseEntity<ErrorResponse> handleVenditoreNonTrovato(
-            VenditoreNonTrovatoException ex,
-            HttpServletRequest request) {
-
-        log.warn("Venditore non trovato: {}", ex.getMessage());
-
-        ErrorResponse errorResponse = new ErrorResponse(
-                HttpStatus.NOT_FOUND.value(),
-                "Venditore non trovato",
-                "Il venditore specificato non è stato trovato",
-                request.getRequestURI(),
-                null
-        );
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 
     @ExceptionHandler(ProdottoNonAppartieneAlVenditoreException.class)

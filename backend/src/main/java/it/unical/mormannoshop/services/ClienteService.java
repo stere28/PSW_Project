@@ -7,7 +7,6 @@ import it.unical.mormannoshop.repositories.ClienteRepository;
 import it.unical.mormannoshop.repositories.OrdineRepository;
 import it.unical.mormannoshop.repositories.ProdottoRepository;
 import it.unical.mormannoshop.utils.events.ProdottoVendutoEvent;
-import it.unical.mormannoshop.utils.exceptions.ClienteNonTrovatoException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonDisponibileException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonTrovatoException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -40,7 +37,7 @@ public class ClienteService {
                 .orElseThrow(() -> new ProdottoNonTrovatoException(idProdotto));
 
         Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(() -> new ClienteNonTrovatoException(idCliente));
+                .orElseGet(() -> creaCliente(idCliente));
 
         if (prodotto.isVenduto()) {
             throw new ProdottoNonDisponibileException(idProdotto);
@@ -53,7 +50,7 @@ public class ClienteService {
     @Transactional//(isolation = Isolation.READ_COMMITTED)
     public void rimuoviProdottoDalCarrello(Long idProdotto, String idCliente) {
         Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(() -> new ClienteNonTrovatoException(idCliente));
+                .orElseGet(() -> creaCliente(idCliente));
 
         Prodotto prodotto = prodottoRepository.findById(idProdotto)
                 .orElseThrow(() -> new ProdottoNonTrovatoException(idProdotto));
@@ -65,14 +62,14 @@ public class ClienteService {
     @Transactional(readOnly = true)
     public Set<Prodotto> getCarrello(String idCliente) {
         Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(() -> new ClienteNonTrovatoException(idCliente));
+                .orElseGet(() -> creaCliente(idCliente));
         return cliente.getProdotti();
     }
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
     public void checkout(String idCliente) {
         Cliente cliente = clienteRepository.findById(idCliente)
-                .orElseThrow(() -> new ClienteNonTrovatoException(idCliente));
+                .orElseGet(() -> creaCliente(idCliente));
 
         Set<Prodotto> carrello = cliente.getProdotti();
 
@@ -109,7 +106,7 @@ public class ClienteService {
         cliente.svuotaCarrello();
     }
 
-    public void creaCliente(String idCliente) {
+    public Cliente creaCliente(String idCliente) {
         if (clienteRepository.existsById(idCliente)) {
             throw new IllegalStateException("Cliente con ID " + idCliente + " già esistente."); //TODO
         }
@@ -117,8 +114,8 @@ public class ClienteService {
         Cliente cliente = new Cliente();
         cliente.setId(idCliente);
         clienteRepository.save(cliente);
+        return cliente;
     }
-
 
 }
 
