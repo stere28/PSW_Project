@@ -8,7 +8,7 @@ import java.util.*;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "venditori")
