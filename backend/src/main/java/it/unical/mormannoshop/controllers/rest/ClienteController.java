@@ -1,5 +1,6 @@
 package it.unical.mormannoshop.controllers.rest;
 
+import it.unical.mormannoshop.entities.Cliente;
 import it.unical.mormannoshop.entities.Prodotto;
 import it.unical.mormannoshop.services.ClienteService;
 import it.unical.mormannoshop.utils.JwtUtils;
@@ -55,9 +56,8 @@ public class ClienteController {
         return ResponseEntity.ok("Checkout completato con successo.");
     }
     @PostMapping("/cliente")
-    public ResponseEntity<String> creaCliente(Authentication authentication) {
+    public ResponseEntity<Cliente> getProfilo(Authentication authentication) {
         String idCliente = JwtUtils.getUserId(authentication);
-        clienteService.creaCliente(idCliente);
-        return ResponseEntity.ok("Cliente creato con successo.");
+        return ResponseEntity.ok(clienteService.getProfilo(idCliente));
     }
 }

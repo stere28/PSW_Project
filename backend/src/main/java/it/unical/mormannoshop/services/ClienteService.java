@@ -11,6 +11,7 @@ import it.unical.mormannoshop.utils.exceptions.ProdottoNonDisponibileException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonTrovatoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -117,5 +118,10 @@ public class ClienteService {
         return cliente;
     }
 
+    public Cliente getProfilo(String idCliente) {
+        Cliente cliente = clienteRepository.findById(idCliente)
+                .orElseGet(() -> creaCliente(idCliente));
+        return cliente;
+    }
 }
 
