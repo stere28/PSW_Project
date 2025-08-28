@@ -25,8 +25,7 @@ public class SecurityConfiguration {
     @Value("${app.cors.allowed-origins:http://localhost:8080,http://localhost:5173}")
     private List<String> allowedOrigins;
 
-    //TODO probabilmente va rimosso quando si mette il backend nel docker
-    @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri:http://host.docker.internal:8080/realms/mormanno-shop/protocol/openid-connect/certs}")
+    @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri:http://localhost:8080/realms/mormanno-shop/protocol/openid-connect/certs}")
     private String jwkSetUri;
 
     //TODO, errore di timeout nella connessione a keycloak da risolvere
@@ -36,7 +35,6 @@ public class SecurityConfiguration {
             return NimbusJwtDecoder.withJwkSetUri(jwkSetUri).build();
         } catch (Exception e) {
             System.err.println("Errore nella configurazione del JwtDecoder: " + e.getMessage());
-            e.printStackTrace();
             throw new RuntimeException("Impossibile configurare il JwtDecoder", e);
         }
     }
