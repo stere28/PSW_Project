@@ -1,29 +1,21 @@
 import React from 'react';
 import './Product.css';
 
-const Product = ({ name, description, price, onAddToCart, onEdit, onDelete }) => {
+const Product = ({ name, description, price, onAddToCart, disabled }) => {
     return (
         <div className="product-container">
             <h2>{name}</h2>
             <p>{description}</p>
-            <p>Price: ${price}</p>
-            <div className="product-actions">
-                {onAddToCart && (
-                    <button className="product-button" onClick={onAddToCart}>
-                        Add to Cart
-                    </button>
-                )}
-                {onEdit && (
-                    <button className="product-button" onClick={onEdit}>
-                        Edit
-                    </button>
-                )}
-                {onDelete && (
-                    <button className="product-button delete-button" onClick={onDelete}>
-                        Delete
-                    </button>
-                )}
-            </div>
+            <p className="product-price">€{price?.toFixed(2)}</p>
+            {onAddToCart && (
+                <button
+                    className="add-to-cart-btn"
+                    onClick={onAddToCart}
+                    disabled={disabled}
+                >
+                    {disabled ? "Aggiungendo..." : "Aggiungi al Carrello"}
+                </button>
+            )}
         </div>
     );
 };
