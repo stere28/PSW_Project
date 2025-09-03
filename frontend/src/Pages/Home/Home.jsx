@@ -113,14 +113,6 @@ export const Home = () => {
                     placeholder="Cerca prodotti..."
                     onChange={e => setFilters({ ...filters, search: e.target.value })}
                 />
-                <select onChange={e => setFilters({ ...filters, category: e.target.value })}>
-                    <option value="">Tutte le categorie</option>
-                    <option value="electronics">Elettronica</option>
-                    <option value="fashion">Moda</option>
-                    <option value="home">Casa</option>
-                    <option value="books">Libri</option>
-                    <option value="sports">Sport</option>
-                </select>
                 <input
                     type="number"
                     placeholder="Prezzo Min"
