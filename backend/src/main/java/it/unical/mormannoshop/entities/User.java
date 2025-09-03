@@ -5,7 +5,7 @@ import lombok.*;
 
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @Entity
 @Table(name = "users")
@@ -13,5 +13,6 @@ import lombok.*;
 public abstract class User {
 
     @Id
+    @EqualsAndHashCode.Include
     private String id;
 }

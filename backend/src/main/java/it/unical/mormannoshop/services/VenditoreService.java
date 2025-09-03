@@ -1,5 +1,6 @@
 package it.unical.mormannoshop.services;
 
+import it.unical.mormannoshop.entities.Cliente;
 import it.unical.mormannoshop.entities.Notifica;
 import it.unical.mormannoshop.entities.Prodotto;
 import it.unical.mormannoshop.entities.Venditore;
@@ -9,14 +10,16 @@ import it.unical.mormannoshop.repositories.VenditoreRepository;
 import it.unical.mormannoshop.utils.exceptions.ProdottoGiaVendutoException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonAppartieneAlVenditoreException;
 import it.unical.mormannoshop.utils.exceptions.ProdottoNonTrovatoException;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -91,6 +94,7 @@ public class VenditoreService
         return venditoreRepository.save(venditore);
     }
 
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
     public void eliminaProdotto(String idVenditore, Long idProdotto) {
         // Verifica che il venditore esista
         Venditore venditore = venditoreRepository.findById(idVenditore)
@@ -112,6 +116,10 @@ public class VenditoreService
             throw new ProdottoGiaVendutoException(
                     "Non è possibile eliminare il prodotto con ID " + idProdotto + " perché è già stato venduto"
             );
+        }
+
+        for (Cliente cliente : new HashSet<>(prodotto.getClienti())) {
+            cliente.rimuoviDalCarrello(prodotto);
         }
 
         prodottoRepository.delete(prodotto);

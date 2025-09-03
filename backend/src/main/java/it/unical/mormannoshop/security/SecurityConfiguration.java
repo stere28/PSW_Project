@@ -28,7 +28,6 @@ public class SecurityConfiguration {
     @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri:http://localhost:8080/realms/mormanno-shop/protocol/openid-connect/certs}")
     private String jwkSetUri;
 
-    //TODO, errore di timeout nella connessione a keycloak da risolvere
     @Bean
     public JwtDecoder jwtDecoder() {
         try {
