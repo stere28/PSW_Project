@@ -125,9 +125,7 @@ export const Home = () => {
                 />
                 <select value={sortOrder} onChange={e => setSortOrder(e.target.value)}>
                     <option value="price-asc">Prezzo: dal più basso</option>
-                    <option value="price-desc">Prezzo: dal più alto</option>
                     <option value="name-asc">Nome: A-Z</option>
-                    <option value="name-desc">Nome: Z-A</option>
                 </select>
                 <button onClick={applyFiltersAndSort} disabled={loading}>
                     {loading ? "Caricamento..." : "Applica filtri"}
