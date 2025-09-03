@@ -1,9 +1,6 @@
 package it.unical.mormannoshop.controllers.rest;
 
-import it.unical.mormannoshop.utils.exceptions.ProdottoNonDisponibileException;
-import it.unical.mormannoshop.utils.exceptions.ProdottoNonTrovatoException;
-import it.unical.mormannoshop.utils.exceptions.ProdottoNonAppartieneAlVenditoreException;
-import it.unical.mormannoshop.utils.exceptions.ProdottoGiaVendutoException;
+import it.unical.mormannoshop.utils.exceptions.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -258,4 +255,24 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
+
+    @ExceptionHandler(ClienteNonTrovatoException.class)
+    public ResponseEntity<ErrorResponse> handleClienteNonTrovato(
+            ClienteNonTrovatoException ex,
+            HttpServletRequest request) {
+
+        log.warn("Cliente non trovato: {}", ex.getMessage());
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                "Cliente non trovato",
+                "Il cliente richiesto non è stato trovato nel sistema",
+                request.getRequestURI(),
+                null
+        );
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+
 }
